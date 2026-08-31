@@ -1,0 +1,47 @@
+# Deploys the static export to GitHub Pages.
+#
+# Off by default so template copies don't fail on repos without Pages
+# configured. To enable:
+#   1. Repo Settings → Pages → Source: "GitHub Actions"
+#   2. Repo Settings → Secrets and variables → Actions → Variables:
+#      set DEPLOY_PAGES to true
+#   3. If the site serves from a subpath (https://org.github.io/repo-name/),
+#      also set the variable BASE_PATH to /repo-name
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    if: vars.DEPLOY_PAGES == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: ${{ vars.BASE_PATH }}
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+      - id: deployment
+        uses: actions/deploy-pages@v4

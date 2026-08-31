@@ -1,0 +1,430 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* ==========================================================================
+   COUNTY OF MARIN DESIGN TOKENS
+   Extracted from Engage Marin (the reference implementation). This file is
+   the single source of truth for color, typography, spacing, radius, and
+   shadow on this site. Style with these tokens; never use arbitrary
+   Tailwind values (`bg-[#0777CF]`) — `npm run check:tokens` enforces this.
+   ========================================================================== */
+
+@theme {
+  /* ==========================================================================
+     MARIN-BLUE / MARIN-GOLD PALETTES
+     County of Marin brand. Brand hex anchors at the 500 shade per County
+     spec. Use directly: bg-marin-blue-500, text-marin-gold-700, etc.
+     ========================================================================== */
+  --color-marin-blue-50:  #F0F8FF;
+  --color-marin-blue-100: #DBF0FF;
+  --color-marin-blue-200: #ADDCFF;
+  --color-marin-blue-300: #74C1FB;
+  --color-marin-blue-400: #2BA0F7;
+  --color-marin-blue-500: #0777CF;
+  --color-marin-blue-600: #0568B3;
+  --color-marin-blue-700: #045795;
+  --color-marin-blue-800: #054576;
+  --color-marin-blue-900: #06365B;
+  --color-marin-blue-950: #03233A;
+  --color-marin-gold-50:  #FFF9EB;
+  --color-marin-gold-100: #FEF0CD;
+  --color-marin-gold-200: #FBE09D;
+  --color-marin-gold-300: #F7D06E;
+  --color-marin-gold-400: #EBBC47;
+  --color-marin-gold-500: #E5B53B;
+  --color-marin-gold-600: #CF9A17;
+  --color-marin-gold-700: #AA7E0E;
+  --color-marin-gold-800: #866309;
+  --color-marin-gold-900: #6B4E06;
+  --color-marin-gold-950: #412F02;
+
+  /* ==========================================================================
+     MARIN-RED PALETTE
+     The canonical destructive / error family, built on the marin-blue
+     lightness curve so the three ramps read as one system.
+
+     Text pairings that hold WCAG 2.2 AA:
+       light mode  -600 and darker on white, -50, -100 and surface-alt
+       dark mode   -400 and lighter on dark stone surfaces
+       -500        AA on white (4.94:1) but NOT on a -100 tint (4.13:1);
+                   use it for fills, borders and focus rings, not body text
+     ========================================================================== */
+  --color-marin-red-50:  #FDF3F1;
+  --color-marin-red-100: #FCE6E1;
+  --color-marin-red-200: #F7C8BD;
+  --color-marin-red-300: #ECA292;
+  --color-marin-red-400: #DE7863;
+  --color-marin-red-500: #B45340;
+  --color-marin-red-600: #9C4838;
+  --color-marin-red-700: #823C2E;
+  --color-marin-red-800: #672F24;
+  --color-marin-red-900: #50251C;
+  --color-marin-red-950: #331712;
+
+  /* ==========================================================================
+     COUNTY BRAND ANCHOR COLORS
+     Single-anchor county-brand colors — no full ramps. For tinted
+     backgrounds use color-mix() derivations or Tailwind opacity utilities
+     (e.g. bg-marin-green/10). Light gray is background/decorative only:
+     2.35:1 on white, never usable as text.
+     ========================================================================== */
+  --color-marin-red:        var(--color-marin-red-500);
+  --color-marin-green:      #73784A;
+  --color-marin-dark-gray:  #6F6F6F;
+  --color-marin-light-gray: #A9A9A9;
+  --color-marin-brown:      #A2662B;
+  --color-marin-black:      #000000;
+
+  /* Neutral surface scale */
+  --color-surface: #ffffff;
+  --color-surface-alt: #f5f7fa;
+  /* Form-control boundary (WCAG 1.4.11). A border is what identifies an
+     input/textarea/select, so it must hold 3:1 against the adjacent surface —
+     default stone borders do not. Light #8A8580: 3.65:1 on white, 3.40:1 on
+     surface-alt. Dark #79716B: 3.65:1 on stone-900. Decorative card/section
+     borders are exempt from 1.4.11 and may use lighter stones. */
+  --color-field-border: light-dark(#8A8580, #79716B);
+  /* Background/decorative only — never `text-subtle` (2.35:1 on white). */
+  --color-subtle: var(--color-marin-light-gray);
+  /* NOTE: no --color-muted is defined here on purpose. The shadcn bridge
+     below re-emits --color-muted as a near-white BACKGROUND, so `text-muted`
+     would paint text in a background color. Secondary text takes
+     text-muted-foreground on shadcn surfaces and text-marin-dark-gray on
+     county-token surfaces. */
+
+  /* Semantic status. -light variants are 12% tints so soft backgrounds stay
+     consistent. Warning uses a non-county amber; the county palette omits a
+     warning hue. */
+  --color-success: var(--color-marin-green);
+  --color-success-light: color-mix(in oklch, var(--color-marin-green) 12%, white);
+  --color-warning: #d97706;
+  --color-warning-light: #fef3c7;
+  --color-error: var(--color-marin-red);
+  --color-error-light: color-mix(in oklch, var(--color-marin-red) 12%, white);
+
+  /* Error / success as foreground text or icons (not fills or borders).
+     Light keeps the county anchors; dark uses +30% white tints because the
+     raw anchors only reach ~3.5:1 on dark stone surfaces — below AA. */
+  --color-error-text:   light-dark(var(--color-marin-red), #CB8779);
+  --color-success-text: light-dark(var(--color-marin-green), #9DA180);
+
+  /* Typography families. Jost for headings/display, Open Sans for body,
+     IBM Plex Mono for code-like values. All point at next/font variables
+     set in src/app/layout.tsx. */
+  --font-heading: var(--font-jost), system-ui, sans-serif;
+  --font-body: var(--font-open-sans), system-ui, sans-serif;
+  --font-product-display: var(--font-jost), "Open Sans", system-ui, sans-serif;
+  --font-product-body: var(--font-open-sans), system-ui, sans-serif;
+  --font-product-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
+
+  /* Border radius — conversational, not sharp/corporate */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.07), 0 1px 2px -1px rgb(0 0 0 / 0.05);
+  --shadow-elevated: 0 4px 12px 0 rgb(0 0 0 / 0.1), 0 2px 4px -1px rgb(0 0 0 / 0.06);
+  --shadow-modal: 0 20px 60px rgb(0 0 0 / 0.2);
+
+  /* Animations — a small generic set. Auto-starting motion must stop within
+     5 seconds unless the page offers a pause control (WCAG 2.2.2); none of
+     these loop. */
+  --animate-fade-up:    fade-up    280ms ease both;
+  --animate-card-enter: card-enter 360ms cubic-bezier(0.34, 1.20, 0.64, 1) both;
+  --animate-toast-in:   toast-in   300ms cubic-bezier(0.34, 1.30, 0.64, 1) both;
+
+  /* ==========================================================================
+     USWDS TOKENS
+     US Web Design System foundational tokens. Use these for structure,
+     spacing, typography sizing, and accessibility-critical patterns.
+     Marin brand tokens override USWDS defaults for color and personality.
+     Source: https://designsystem.digital.gov/design-tokens/
+     ========================================================================== */
+
+  /* USWDS Spacing scale (1 unit = 8px) */
+  --uswds-unit-05:  0.25rem;   /*  4px – tight internal padding */
+  --uswds-unit-1:   0.5rem;    /*  8px */
+  --uswds-unit-105: 0.75rem;   /* 12px */
+  --uswds-unit-2:   1rem;      /* 16px – base spacing unit */
+  --uswds-unit-205: 1.25rem;   /* 20px */
+  --uswds-unit-3:   1.5rem;    /* 24px */
+  --uswds-unit-4:   2rem;      /* 32px */
+  --uswds-unit-5:   2.5rem;    /* 40px */
+  --uswds-unit-6:   3rem;      /* 48px */
+  --uswds-unit-7:   3.5rem;    /* 56px */
+  --uswds-unit-8:   4rem;      /* 64px */
+  --uswds-unit-9:   4.5rem;    /* 72px */
+  --uswds-unit-10:  5rem;      /* 80px */
+  --uswds-unit-15:  7.5rem;    /* 120px */
+
+  /* USWDS Type scale — md = browser default (16px) */
+  --uswds-type-3xs: 0.75rem;   /* 12px */
+  --uswds-type-2xs: 0.8125rem; /* 13px */
+  --uswds-type-xs:  0.875rem;  /* 14px */
+  --uswds-type-sm:  0.9375rem; /* 15px */
+  --uswds-type-md:  1rem;      /* 16px – base */
+  --uswds-type-lg:  1.0625rem; /* 17px */
+  --uswds-type-xl:  1.1875rem; /* 19px */
+  --uswds-type-2xl: 1.375rem;  /* 22px */
+  --uswds-type-3xl: 1.625rem;  /* 26px */
+  --uswds-type-4xl: 1.875rem;  /* 30px */
+  --uswds-type-5xl: 2.25rem;   /* 36px */
+  --uswds-type-6xl: 3rem;      /* 48px */
+  --uswds-type-7xl: 4rem;      /* 64px */
+
+  /* USWDS Base color palette (neutral ink/surface scale) */
+  --uswds-color-ink:           #1b1b1b;
+  --uswds-color-base-darkest:  #1b1b1b;
+  --uswds-color-base-darker:   #3d4551;
+  --uswds-color-base-dark:     #565c65;
+  --uswds-color-base:          #71767a;
+  --uswds-color-base-light:    #a9aeb1;
+  --uswds-color-base-lighter:  #dfe1e2;
+  --uswds-color-base-lightest: #f0f0f0;
+
+  /* USWDS Grid */
+  --uswds-grid-max-width: 64rem;     /* 1024px – "desktop" container */
+  --uswds-grid-max-width-lg: 75rem;  /* 1200px – "desktop-lg" container */
+  --uswds-grid-gap: 1rem;            /* 16px – standard gutter */
+  --uswds-grid-gap-lg: 2rem;         /* 32px – wide gutter */
+
+  /* USWDS Focus ring (WCAG 2.2 AA — do not modify without a11y review) */
+  --uswds-focus-color:  #2491ff;
+  --uswds-focus-width:  0.25rem;     /* 4px */
+  --uswds-focus-offset: 0;
+}
+
+/* ==========================================================================
+   USWDS FOCUS RING UTILITY
+   Apply to interactive elements that don't use the Tailwind ring pattern.
+   Never use outline: none without substituting a visible focus indicator.
+   ========================================================================== */
+@layer utilities {
+  .uswds-focus {
+    outline: var(--uswds-focus-width) solid var(--uswds-focus-color);
+    outline-offset: var(--uswds-focus-offset);
+  }
+}
+
+@keyframes fade-up {
+  from { transform: translateY(5px); opacity: 0; }
+  to   { transform: translateY(0);   opacity: 1; }
+}
+
+@keyframes card-enter {
+  from { transform: translateY(-12px); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+
+@keyframes toast-in {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+.animate-fade-up    { animation: var(--animate-fade-up); }
+.animate-card-enter { animation: var(--animate-card-enter); }
+.animate-toast-in   { animation: var(--animate-toast-in); }
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-card-enter,
+  .animate-toast-in {
+    animation: none;
+  }
+}
+
+:root {
+  /* Honor the user's OS preference for light vs dark. Tailwind v4's `dark:`
+     variant responds to `prefers-color-scheme: dark` automatically; setting
+     `color-scheme: light dark` makes browser chrome (form controls,
+     scrollbars) follow the same preference. There is no .dark class.
+
+     Every surface must be dark-paired. Pair surfaces to stone-900/950,
+     headings to stone-50, body to stone-300, muted to stone-400, county
+     tints to their -950 counterparts. `marin-dark-gray` and `marin-green`
+     are flat values that do not track the theme. */
+  color-scheme: light dark;
+
+  /* shadcn/ui tokens, consumed by the components in src/components/ui/.
+     Primary and ring are pinned to the marin palette; dark values live in
+     the prefers-color-scheme block at the end of this file. */
+  --background:  oklch(1 0 0);
+  --foreground:  oklch(0.145 0 0);
+  --card:  oklch(1 0 0);
+  --card-foreground:  oklch(0.145 0 0);
+  --popover:  oklch(1 0 0);
+  --popover-foreground:  oklch(0.145 0 0);
+  --primary:  var(--color-marin-blue-700);
+  --primary-foreground:  #ffffff;
+  --secondary:  oklch(0.97 0 0);
+  --secondary-foreground:  oklch(0.205 0 0);
+  --muted:  oklch(0.97 0 0);
+  /* Darkened from the shadcn default (0.556): #737373 is only 4.41:1 on the
+     #f5f7fa surface — below WCAG 2.2 AA for body text. */
+  --muted-foreground:  oklch(0.5 0 0);
+  --accent:  oklch(0.97 0 0);
+  --accent-foreground:  oklch(0.205 0 0);
+  --destructive:  oklch(0.577 0.245 27.325);
+  --border:  oklch(0.922 0 0);
+  --input:  oklch(0.922 0 0);
+  /* 500, not 400: focus rings need 3:1 non-text contrast on white/stone-50
+     (WCAG 1.4.11); marin-blue-400 computes ~2.7:1 there. Dark mode uses 400.
+
+     A ring drawn straight onto a colored button is measured against THAT
+     button, not the page, so always pair the ring with a ring-offset. The
+     standard interactive-element focus pattern:
+
+       focus-visible:ring-2 focus-visible:ring-marin-blue-500
+       dark:focus-visible:ring-marin-blue-400
+       focus-visible:ring-offset-2 focus-visible:ring-offset-white
+       dark:focus-visible:ring-offset-stone-900
+
+     marin-blue-500 clears 3:1 against every surface the offset band lands
+     on. A white ring with no offset, or marin-blue-300 over a white offset,
+     does NOT clear. */
+  --ring:  var(--color-marin-blue-500);
+  --chart-1:  oklch(0.87 0 0);
+  --chart-2:  oklch(0.556 0 0);
+  --chart-3:  oklch(0.439 0 0);
+  --chart-4:  oklch(0.371 0 0);
+  --chart-5:  oklch(0.269 0 0);
+  --radius:  0.625rem;
+  --sidebar:  oklch(0.985 0 0);
+  --sidebar-foreground:  oklch(0.145 0 0);
+  --sidebar-primary:  var(--color-marin-blue-700);
+  --sidebar-primary-foreground:  #ffffff;
+  --sidebar-accent:  oklch(0.97 0 0);
+  --sidebar-accent-foreground:  oklch(0.205 0 0);
+  --sidebar-border:  oklch(0.922 0 0);
+  /* Marin 500 for the same 1.4.11 reason as --ring. */
+  --sidebar-ring:  var(--color-marin-blue-500);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body), system-ui, sans-serif;
+  background-color: var(--color-surface-alt);
+  color: var(--uswds-color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), system-ui, sans-serif;
+}
+
+button:not(:disabled),
+[role="button"]:not(:disabled) {
+  cursor: pointer;
+}
+
+/* iOS Safari auto-zooms when focusing a form control whose font-size is
+   below 16px and does not always release the zoom on blur. Lock controls to
+   16px at small widths. */
+@media (max-width: 640px) {
+  input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]):not([type="file"]):not([type="range"]),
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
+
+/* shadcn bridge: re-emit the runtime tokens above as Tailwind theme tokens
+   so utilities like bg-background / text-muted-foreground resolve. */
+@theme inline {
+  --color-sidebar-ring:  var(--sidebar-ring);
+  --color-sidebar-border:  var(--sidebar-border);
+  --color-sidebar-accent-foreground:  var(--sidebar-accent-foreground);
+  --color-sidebar-accent:  var(--sidebar-accent);
+  --color-sidebar-primary-foreground:  var(--sidebar-primary-foreground);
+  --color-sidebar-primary:  var(--sidebar-primary);
+  --color-sidebar-foreground:  var(--sidebar-foreground);
+  --color-sidebar:  var(--sidebar);
+  --color-chart-5:  var(--chart-5);
+  --color-chart-4:  var(--chart-4);
+  --color-chart-3:  var(--chart-3);
+  --color-chart-2:  var(--chart-2);
+  --color-chart-1:  var(--chart-1);
+  --color-ring:  var(--ring);
+  --color-input:  var(--input);
+  --color-border:  var(--border);
+  --color-destructive:  var(--destructive);
+  --color-accent-foreground:  var(--accent-foreground);
+  --color-accent:  var(--accent);
+  --color-muted-foreground:  var(--muted-foreground);
+  --color-muted:  var(--muted);
+  --color-secondary-foreground:  var(--secondary-foreground);
+  --color-secondary:  var(--secondary);
+  --color-primary-foreground:  var(--primary-foreground);
+  --color-primary:  var(--primary);
+  --color-popover-foreground:  var(--popover-foreground);
+  --color-popover:  var(--popover);
+  --color-card-foreground:  var(--card-foreground);
+  --color-card:  var(--card);
+  --color-foreground:  var(--foreground);
+  --color-background:  var(--background);
+  --radius-sm:  calc(var(--radius) * 0.6);
+  --radius-md:  calc(var(--radius) * 0.8);
+  --radius-lg:  var(--radius);
+  --radius-xl:  calc(var(--radius) * 1.4);
+  --radius-2xl:  calc(var(--radius) * 1.8);
+  --radius-3xl:  calc(var(--radius) * 2.2);
+  --radius-4xl:  calc(var(--radius) * 2.6);
+}
+
+/* shadcn base layer. Tailwind v4's default border color is currentColor;
+   the components in src/components/ui/ follow upstream and assume this rule
+   maps unstyled borders to the muted --border token. Without it every bare
+   `border-b` renders text-colored. */
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+}
+
+/* shadcn dark tokens follow the OS preference, matching the rest of the
+   site's `dark:` variants (media-based; nothing sets a .dark class). */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background:  oklch(0.145 0 0);
+    --foreground:  oklch(0.985 0 0);
+    --card:  oklch(0.205 0 0);
+    --card-foreground:  oklch(0.985 0 0);
+    --popover:  oklch(0.205 0 0);
+    --popover-foreground:  oklch(0.985 0 0);
+    --primary:  var(--color-marin-blue-400);
+    --primary-foreground:  oklch(0.145 0 0);
+    --secondary:  oklch(0.269 0 0);
+    --secondary-foreground:  oklch(0.985 0 0);
+    --muted:  oklch(0.269 0 0);
+    --muted-foreground:  oklch(0.708 0 0);
+    --accent:  oklch(0.269 0 0);
+    --accent-foreground:  oklch(0.985 0 0);
+    --destructive:  oklch(0.704 0.191 22.216);
+    --border:  oklch(1 0 0 / 10%);
+    --input:  oklch(1 0 0 / 15%);
+    --ring:  var(--color-marin-blue-400);
+    --chart-1:  oklch(0.87 0 0);
+    --chart-2:  oklch(0.556 0 0);
+    --chart-3:  oklch(0.439 0 0);
+    --chart-4:  oklch(0.371 0 0);
+    --chart-5:  oklch(0.269 0 0);
+    --sidebar:  oklch(0.205 0 0);
+    --sidebar-foreground:  oklch(0.985 0 0);
+    --sidebar-primary:  var(--color-marin-blue-400);
+    --sidebar-primary-foreground:  oklch(0.145 0 0);
+    --sidebar-accent:  oklch(0.269 0 0);
+    --sidebar-accent-foreground:  oklch(0.985 0 0);
+    --sidebar-border:  oklch(1 0 0 / 10%);
+    --sidebar-ring:  var(--color-marin-blue-400);
+  }
+}
