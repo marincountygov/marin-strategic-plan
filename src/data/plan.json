@@ -1,0 +1,65 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "marin": "https://marincountygov.github.io/marin-strategic-plan/vocab/"
+  },
+  "@graph": [
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/plan/countywide-strategic-plan",
+      "@type": "marin:StrategicPlan",
+      "name": "Marin Countywide Strategic Plan",
+      "description": "The County of Marin's shared plan for housing, climate, and digital government, tracked as a living set of goals, initiatives, and performance measures rather than a static document.",
+      "text": "The Marin Countywide Strategic Plan aligns the Board of Supervisors, County departments, and community partners around a small set of measurable goals. Every goal on this site links down to the objectives, initiatives, and projects that implement it, and up to the performance measures that track it — the plan itself is the JSON graph, not a PDF.",
+      "marin:status": "In Progress",
+      "marin:owner": "https://marincountygov.github.io/marin-strategic-plan/participants/county-executive-office",
+      "startDate": "2025-01-01",
+      "dateModified": "2026-08-15",
+      "hasPart": [
+        "https://marincountygov.github.io/marin-strategic-plan/themes/housing-access",
+        "https://marincountygov.github.io/marin-strategic-plan/themes/climate-resilience",
+        "https://marincountygov.github.io/marin-strategic-plan/themes/digital-government"
+      ],
+      "marin:vision": "A Marin County where every resident has access to a safe, affordable place to live, a resilient environment, and a government that is easy to reach and easy to work with.",
+      "marin:mission": "Align County departments, cities, towns, and community partners around a shared set of goals, and report progress against them openly and often.",
+      "marin:values": [
+        {
+          "name": "Equity",
+          "description": "Prioritize investments and services for residents and communities with the greatest need."
+        },
+        {
+          "name": "Transparency",
+          "description": "Publish progress on every goal and KPI as structured, machine-readable data, not just narrative reports."
+        },
+        {
+          "name": "Collaboration",
+          "description": "Work across County departments, cities, towns, and community organizations rather than in silos."
+        }
+      ],
+      "marin:about": {
+        "purpose": "Give the Board, County departments, and the public one shared, current view of the County's strategic priorities and progress against them.",
+        "whyItMatters": "Countywide priorities have historically lived in separate department plans, board reports, and PDFs that go stale quickly. This site keeps one structured source of truth that every report and dashboard draws from.",
+        "scope": "Covers Countywide priorities set by the Board of Supervisors. Department-level plans link into this plan's goals and KPIs rather than duplicating them.",
+        "planningApproach": "Built through community engagement, department consultation, and Board review, following the phases on the Timeline page.",
+        "expectedOutcomes": "Measurable progress on housing production, greenhouse gas reduction, and digital service delivery, reported quarterly against the KPIs on the Performance page."
+      },
+      "marin:faq": [
+        {
+          "question": "How often is this site updated?",
+          "answer": "Goal and KPI progress is reviewed quarterly; milestone and update content is added as it happens."
+        },
+        {
+          "question": "How is this different from a PDF strategic plan?",
+          "answer": "Every goal, objective, initiative, and KPI here is structured data with its own stable link, so it can be tracked, queried, and linked to directly instead of being buried in a document."
+        },
+        {
+          "question": "How can I get involved?",
+          "answer": "See the Engagement page for upcoming workshops and meetings, and Who's Involved for how residents, departments, and partner agencies participate."
+        }
+      ],
+      "marin:featuredGoals": [
+        "https://marincountygov.github.io/marin-strategic-plan/goals/increase-affordable-housing",
+        "https://marincountygov.github.io/marin-strategic-plan/goals/reduce-ghg-emissions"
+      ]
+    }
+  ]
+}

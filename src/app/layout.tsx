@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, Jost, Open_Sans } from "next/font/google";
 import { AppShell } from "@/components/layout/AppShell";
+import { SiteLock } from "@/components/layout/SiteLock";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
@@ -50,7 +51,9 @@ export default function RootLayout({
       className={`${jost.variable} ${openSans.variable} ${ibmPlexMono.variable}`}
     >
       <body className="antialiased">
-        <AppShell>{children}</AppShell>
+        <SiteLock>
+          <AppShell>{children}</AppShell>
+        </SiteLock>
       </body>
     </html>
   );

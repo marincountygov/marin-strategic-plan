@@ -1,0 +1,24 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "marin": "https://marincountygov.github.io/marin-strategic-plan/vocab/"
+  },
+  "@graph": [
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/projects/trust-fund-capitalization-project",
+      "@type": "Project",
+      "name": "Trust Fund Capitalization Project",
+      "description": "Establish the dedicated revenue source, adopt fund management policy, and capitalize the Housing Trust Fund's first allocation.",
+      "marin:status": "On Track",
+      "marin:owner": "https://marincountygov.github.io/marin-strategic-plan/participants/community-development-agency",
+      "marin:progress": 60,
+      "startDate": "2025-03-01",
+      "endDate": "2026-12-31",
+      "isPartOf": "https://marincountygov.github.io/marin-strategic-plan/initiatives/housing-trust-fund-initiative",
+      "hasPart": [
+        "https://marincountygov.github.io/marin-strategic-plan/milestones/trust-fund-revenue-source-adopted",
+        "https://marincountygov.github.io/marin-strategic-plan/milestones/initial-fund-capitalized"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "marin": "https://marincountygov.github.io/marin-strategic-plan/vocab/"
+  },
+  "@graph": [
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/communications/strategic-plan-website",
+      "@type": "WebSite",
+      "name": "Marin Countywide Strategic Plan website",
+      "description": "This site — the structured, always-current record of the plan's goals, progress, and updates.",
+      "url": "https://marincountygov.github.io/marin-strategic-plan",
+      "marin:purpose": ["Learn", "Stay informed"],
+      "marin:audience": "General public",
+      "marin:primary": true
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/communications/engage-marin",
+      "@type": "Service",
+      "name": "Engage Marin",
+      "description": "The County's participation platform for surveys, comment periods, and interactive engagement on the plan.",
+      "url": "https://engage.marincounty.gov",
+      "marin:purpose": ["Participate", "Learn"],
+      "marin:audience": "Residents and stakeholders",
+      "marin:primary": true
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/communications/facebook",
+      "@type": "Service",
+      "name": "County of Marin on Facebook",
+      "description": "Social channel for plan announcements and event promotion.",
+      "url": "https://www.facebook.com/countyofmarin",
+      "marin:account": "@countyofmarin",
+      "marin:purpose": ["Watch updates", "Stay informed"]
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/communications/instagram",
+      "@type": "Service",
+      "name": "County of Marin on Instagram",
+      "description": "Social channel for plan announcements and event promotion.",
+      "url": "https://www.instagram.com/countyofmarin",
+      "marin:account": "@countyofmarin",
+      "marin:purpose": ["Watch updates"]
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/communications/x",
+      "@type": "Service",
+      "name": "County of Marin on X",
+      "description": "Social channel for plan announcements and board action highlights.",
+      "url": "https://x.com/countyofmarin",
+      "marin:account": "@countyofmarin",
+      "marin:purpose": ["Watch updates"]
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/communications/youtube",
+      "@type": "Service",
+      "name": "County of Marin on YouTube",
+      "description": "Recorded Board meetings, workshops, and plan explainer videos.",
+      "url": "https://www.youtube.com/@countyofmarin",
+      "marin:purpose": ["Watch updates", "Learn"]
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/communications/email-newsletter",
+      "@type": "Service",
+      "name": "Strategic Plan email newsletter",
+      "description": "Quarterly email newsletter with progress highlights and upcoming engagement opportunities.",
+      "url": "https://www.marincounty.gov/subscribe/strategic-plan",
+      "marin:purpose": ["Subscribe", "Stay informed"]
+    }
+  ]
+}

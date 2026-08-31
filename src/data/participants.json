@@ -1,0 +1,55 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "marin": "https://marincountygov.github.io/marin-strategic-plan/vocab/"
+  },
+  "@graph": [
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/participants/board-of-supervisors",
+      "@type": "GovernmentOrganization",
+      "name": "Board of Supervisors",
+      "description": "Marin County's elected governing body; adopts the plan and approves major funding and policy decisions.",
+      "marin:role": "Decision Maker",
+      "url": "https://www.marincounty.gov/depts/bs"
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/participants/county-executive-office",
+      "@type": "Organization",
+      "name": "County Executive Office",
+      "description": "Sponsors the plan, coordinates cross-department implementation, and owns Countywide reporting.",
+      "marin:role": "Executive Sponsor",
+      "url": "https://www.marincounty.gov/depts/ceo"
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/participants/community-development-agency",
+      "@type": "Organization",
+      "name": "Community Development Agency",
+      "description": "Leads housing production, planning, and Housing Trust Fund initiatives.",
+      "marin:role": "Planning Team",
+      "url": "https://www.marincounty.gov/depts/cd"
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/participants/health-human-services",
+      "@type": "Organization",
+      "name": "Department of Health and Human Services",
+      "description": "Leads housing stability programs and coordinates on climate and sustainability initiatives.",
+      "marin:role": "Planning Team",
+      "url": "https://www.marincounty.gov/depts/hh"
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/participants/marin-housing-authority",
+      "@type": "GovernmentOrganization",
+      "name": "Marin Housing Authority",
+      "description": "Partner agency administering rental assistance and affordable housing programs alongside County initiatives.",
+      "marin:role": "Partner",
+      "url": "https://www.marinhousing.org"
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/participants/residents",
+      "@type": "Audience",
+      "name": "Marin County residents",
+      "description": "People who live in Marin County; participate through surveys, workshops, and public comment on the draft and ongoing plan.",
+      "marin:role": "Community Member"
+    }
+  ]
+}

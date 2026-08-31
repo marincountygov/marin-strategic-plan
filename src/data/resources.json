@@ -1,0 +1,40 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "marin": "https://marincountygov.github.io/marin-strategic-plan/vocab/"
+  },
+  "@graph": [
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/resources/draft-plan-pdf",
+      "@type": "CreativeWork",
+      "name": "Draft Countywide Strategic Plan (PDF)",
+      "description": "The full draft plan as reviewed during the Public Review phase, for readers who want a single downloadable document.",
+      "url": "https://www.marincounty.gov/downloads/strategic-plan-draft.pdf",
+      "marin:resourceType": "Download"
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/resources/kickoff-board-presentation",
+      "@type": "CreativeWork",
+      "name": "Board Presentation — Strategic Plan Kickoff",
+      "description": "Slides presented to the Board of Supervisors introducing the strategic planning process.",
+      "url": "https://www.marincounty.gov/downloads/strategic-plan-kickoff-presentation.pdf",
+      "marin:resourceType": "Board Presentation"
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/resources/faq",
+      "@type": "CreativeWork",
+      "name": "Strategic Plan Frequently Asked Questions",
+      "description": "Answers to common questions about the plan's scope, process, and how to get involved.",
+      "url": "https://marincountygov.github.io/marin-strategic-plan/about",
+      "marin:resourceType": "FAQ"
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/resources/general-plan",
+      "@type": "CreativeWork",
+      "name": "Marin Countywide General Plan",
+      "description": "The County's existing General Plan, which the strategic plan's housing and climate goals build on.",
+      "url": "https://www.marincounty.gov/depts/cd/divisions/planning/countywide-plan",
+      "marin:resourceType": "Related Plan"
+    }
+  ]
+}
