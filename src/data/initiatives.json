@@ -1,0 +1,67 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "marin": "https://marincountygov.github.io/marin-strategic-plan/vocab/"
+  },
+  "@graph": [
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/initiatives/housing-trust-fund-initiative",
+      "@type": "marin:Initiative",
+      "name": "Housing Trust Fund Capitalization Initiative",
+      "description": "Identify and dedicate an ongoing revenue source to capitalize the County Housing Trust Fund, then deploy it as gap financing for affordable developments.",
+      "marin:status": "On Track",
+      "marin:owner": "https://marincountygov.github.io/marin-strategic-plan/participants/community-development-agency",
+      "marin:progress": 55,
+      "startDate": "2025-03-01",
+      "endDate": "2027-06-30",
+      "marin:risks": [
+        "State or federal housing funding cuts reduce leverage for local dollars",
+        "Rising construction costs increase per-unit subsidy needed"
+      ],
+      "marin:dependencies": ["Board approval of a dedicated revenue source"],
+      "isPartOf": "https://marincountygov.github.io/marin-strategic-plan/strategies/expand-housing-trust-fund",
+      "hasPart": ["https://marincountygov.github.io/marin-strategic-plan/projects/trust-fund-capitalization-project"]
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/initiatives/eviction-prevention-program",
+      "@type": "marin:Initiative",
+      "name": "Eviction Prevention Program",
+      "description": "Fund emergency rental assistance and legal aid to prevent evictions before they're filed.",
+      "marin:status": "In Progress",
+      "marin:owner": "https://marincountygov.github.io/marin-strategic-plan/participants/health-human-services",
+      "marin:progress": 34,
+      "startDate": "2025-01-01",
+      "endDate": "2028-12-31",
+      "marin:risks": ["Rental assistance funding is one-time, not ongoing"],
+      "isPartOf": "https://marincountygov.github.io/marin-strategic-plan/objectives/reduce-eviction-rate",
+      "marin:relatedItems": ["https://marincountygov.github.io/marin-strategic-plan/kpis/eviction-prevention-cases-served"]
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/initiatives/fleet-electrification-initiative",
+      "@type": "marin:Initiative",
+      "name": "County Fleet Electrification Initiative",
+      "description": "Replace County light-duty fleet vehicles with electric vehicles as they reach end of life, and install supporting charging infrastructure.",
+      "marin:status": "At Risk",
+      "marin:owner": "https://marincountygov.github.io/marin-strategic-plan/participants/health-human-services",
+      "marin:progress": 20,
+      "startDate": "2025-01-01",
+      "endDate": "2030-12-31",
+      "marin:risks": ["Charging infrastructure lead times are longer than vehicle procurement"],
+      "isPartOf": "https://marincountygov.github.io/marin-strategic-plan/objectives/cut-county-operations-emissions",
+      "marin:relatedItems": ["https://marincountygov.github.io/marin-strategic-plan/kpis/ghg-emissions-reduced-percent"]
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/initiatives/online-permitting-initiative",
+      "@type": "marin:Initiative",
+      "name": "Online Permitting Initiative",
+      "description": "Move building and planning permit applications, payments, and status tracking fully online.",
+      "marin:status": "Planning",
+      "marin:owner": "https://marincountygov.github.io/marin-strategic-plan/participants/county-executive-office",
+      "marin:progress": 10,
+      "startDate": "2026-01-01",
+      "endDate": "2028-06-30",
+      "isPartOf": "https://marincountygov.github.io/marin-strategic-plan/objectives/increase-digital-service-completion",
+      "marin:relatedItems": ["https://marincountygov.github.io/marin-strategic-plan/kpis/digital-service-completion-rate"]
+    }
+  ]
+}

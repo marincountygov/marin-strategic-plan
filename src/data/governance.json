@@ -1,0 +1,30 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "marin": "https://marincountygov.github.io/marin-strategic-plan/vocab/"
+  },
+  "@graph": [
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/governance/countywide-strategic-plan",
+      "@type": "marin:Governance",
+      "name": "Countywide Strategic Plan Governance",
+      "description": "The sponsor, committees, and decision-making bodies that oversee the Countywide Strategic Plan.",
+      "marin:executiveSponsor": "https://marincountygov.github.io/marin-strategic-plan/participants/county-executive-office",
+      "marin:steeringCommittee": [
+        "https://marincountygov.github.io/marin-strategic-plan/participants/county-executive-office",
+        "https://marincountygov.github.io/marin-strategic-plan/participants/community-development-agency",
+        "https://marincountygov.github.io/marin-strategic-plan/participants/health-human-services"
+      ],
+      "marin:planningTeam": [
+        "https://marincountygov.github.io/marin-strategic-plan/participants/community-development-agency",
+        "https://marincountygov.github.io/marin-strategic-plan/participants/health-human-services"
+      ],
+      "marin:decisionMakers": [
+        "https://marincountygov.github.io/marin-strategic-plan/participants/board-of-supervisors"
+      ],
+      "marin:approvalMilestones": [
+        "https://marincountygov.github.io/marin-strategic-plan/milestones/trust-fund-revenue-source-adopted"
+      ]
+    }
+  ]
+}

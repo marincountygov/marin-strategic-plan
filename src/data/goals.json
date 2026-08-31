@@ -1,0 +1,72 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "marin": "https://marincountygov.github.io/marin-strategic-plan/vocab/"
+  },
+  "@graph": [
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/goals/increase-affordable-housing",
+      "@type": "marin:Goal",
+      "name": "Increase affordable housing production",
+      "description": "Grow the countywide supply of deed-restricted affordable housing units.",
+      "marin:status": "On Track",
+      "marin:owner": "https://marincountygov.github.io/marin-strategic-plan/participants/community-development-agency",
+      "marin:priority": "Critical",
+      "marin:progress": 42,
+      "startDate": "2025-01-01",
+      "endDate": "2030-12-31",
+      "keywords": ["housing", "affordable housing", "production"],
+      "isPartOf": "https://marincountygov.github.io/marin-strategic-plan/themes/housing-access",
+      "hasPart": ["https://marincountygov.github.io/marin-strategic-plan/objectives/increase-affordable-units"],
+      "marin:relatedItems": ["https://marincountygov.github.io/marin-strategic-plan/kpis/affordable-units-produced"]
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/goals/reduce-housing-instability",
+      "@type": "marin:Goal",
+      "name": "Reduce housing instability",
+      "description": "Lower the countywide eviction rate and expand rapid rehousing capacity.",
+      "marin:status": "In Progress",
+      "marin:owner": "https://marincountygov.github.io/marin-strategic-plan/participants/health-human-services",
+      "marin:priority": "High",
+      "marin:progress": 30,
+      "startDate": "2025-01-01",
+      "endDate": "2029-12-31",
+      "keywords": ["housing stability", "eviction prevention", "homelessness"],
+      "isPartOf": "https://marincountygov.github.io/marin-strategic-plan/themes/housing-access",
+      "hasPart": ["https://marincountygov.github.io/marin-strategic-plan/objectives/reduce-eviction-rate"],
+      "marin:relatedItems": ["https://marincountygov.github.io/marin-strategic-plan/kpis/eviction-prevention-cases-served"]
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/goals/reduce-ghg-emissions",
+      "@type": "marin:Goal",
+      "name": "Reduce countywide greenhouse gas emissions",
+      "description": "Cut emissions from County operations and support community-wide emissions reduction.",
+      "marin:status": "At Risk",
+      "marin:owner": "https://marincountygov.github.io/marin-strategic-plan/participants/health-human-services",
+      "marin:priority": "Critical",
+      "marin:progress": 22,
+      "startDate": "2025-01-01",
+      "endDate": "2032-12-31",
+      "keywords": ["climate", "greenhouse gas", "emissions"],
+      "isPartOf": "https://marincountygov.github.io/marin-strategic-plan/themes/climate-resilience",
+      "hasPart": ["https://marincountygov.github.io/marin-strategic-plan/objectives/cut-county-operations-emissions"],
+      "marin:relatedItems": ["https://marincountygov.github.io/marin-strategic-plan/kpis/ghg-emissions-reduced-percent"]
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/goals/modernize-digital-services",
+      "@type": "marin:Goal",
+      "name": "Modernize resident-facing digital services",
+      "description": "Move high-volume County services online with accessible, mobile-friendly workflows.",
+      "marin:status": "Planning",
+      "marin:owner": "https://marincountygov.github.io/marin-strategic-plan/participants/county-executive-office",
+      "marin:priority": "Medium",
+      "marin:progress": 12,
+      "startDate": "2025-07-01",
+      "endDate": "2028-12-31",
+      "keywords": ["digital services", "technology", "customer experience"],
+      "isPartOf": "https://marincountygov.github.io/marin-strategic-plan/themes/digital-government",
+      "hasPart": ["https://marincountygov.github.io/marin-strategic-plan/objectives/increase-digital-service-completion"],
+      "marin:relatedItems": ["https://marincountygov.github.io/marin-strategic-plan/kpis/digital-service-completion-rate"]
+    }
+  ]
+}

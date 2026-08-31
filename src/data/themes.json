@@ -1,0 +1,47 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "marin": "https://marincountygov.github.io/marin-strategic-plan/vocab/"
+  },
+  "@graph": [
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/themes/housing-access",
+      "@type": "marin:StrategicTheme",
+      "name": "Housing Access & Affordability",
+      "description": "Increase the supply of affordable housing and reduce housing instability for Marin residents.",
+      "marin:status": "In Progress",
+      "marin:owner": "https://marincountygov.github.io/marin-strategic-plan/participants/community-development-agency",
+      "marin:progress": 38,
+      "keywords": ["housing", "affordability", "homelessness prevention"],
+      "isPartOf": "https://marincountygov.github.io/marin-strategic-plan/plan/countywide-strategic-plan",
+      "hasPart": [
+        "https://marincountygov.github.io/marin-strategic-plan/goals/increase-affordable-housing",
+        "https://marincountygov.github.io/marin-strategic-plan/goals/reduce-housing-instability"
+      ]
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/themes/climate-resilience",
+      "@type": "marin:StrategicTheme",
+      "name": "Climate Resilience",
+      "description": "Reduce countywide greenhouse gas emissions and prepare County infrastructure and communities for climate impacts.",
+      "marin:status": "In Progress",
+      "marin:owner": "https://marincountygov.github.io/marin-strategic-plan/participants/health-human-services",
+      "marin:progress": 25,
+      "keywords": ["climate", "sustainability", "emissions"],
+      "isPartOf": "https://marincountygov.github.io/marin-strategic-plan/plan/countywide-strategic-plan",
+      "hasPart": ["https://marincountygov.github.io/marin-strategic-plan/goals/reduce-ghg-emissions"]
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/themes/digital-government",
+      "@type": "marin:StrategicTheme",
+      "name": "Digital Government",
+      "description": "Modernize resident-facing services so County business can be done online, simply and accessibly.",
+      "marin:status": "Planning",
+      "marin:owner": "https://marincountygov.github.io/marin-strategic-plan/participants/county-executive-office",
+      "marin:progress": 15,
+      "keywords": ["digital services", "technology", "accessibility"],
+      "isPartOf": "https://marincountygov.github.io/marin-strategic-plan/plan/countywide-strategic-plan",
+      "hasPart": ["https://marincountygov.github.io/marin-strategic-plan/goals/modernize-digital-services"]
+    }
+  ]
+}

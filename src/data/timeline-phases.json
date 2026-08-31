@@ -1,0 +1,95 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "marin": "https://marincountygov.github.io/marin-strategic-plan/vocab/"
+  },
+  "@graph": [
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/timeline-phases/research",
+      "@type": "marin:PlanPhase",
+      "name": "Research",
+      "description": "Gather existing plans, demographic data, and prior survey findings to establish a baseline.",
+      "marin:status": "Completed",
+      "order": 1,
+      "marin:percentComplete": 100,
+      "startDate": "2025-01-01",
+      "endDate": "2025-04-30"
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/timeline-phases/community-engagement",
+      "@type": "marin:PlanPhase",
+      "name": "Community Engagement",
+      "description": "Hold workshops, surveys, and open houses to gather resident and stakeholder input.",
+      "marin:status": "Completed",
+      "order": 2,
+      "marin:percentComplete": 100,
+      "startDate": "2025-03-01",
+      "endDate": "2025-07-31"
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/timeline-phases/draft-plan",
+      "@type": "marin:PlanPhase",
+      "name": "Draft Plan",
+      "description": "Synthesize research and engagement input into a draft set of themes, goals, and initiatives.",
+      "marin:status": "Completed",
+      "order": 3,
+      "marin:percentComplete": 100,
+      "startDate": "2025-07-01",
+      "endDate": "2025-10-15"
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/timeline-phases/public-review",
+      "@type": "marin:PlanPhase",
+      "name": "Public Review",
+      "description": "Publish the draft plan for public comment before Board consideration.",
+      "marin:status": "Completed",
+      "order": 4,
+      "marin:percentComplete": 100,
+      "startDate": "2025-10-16",
+      "endDate": "2025-11-15"
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/timeline-phases/board-review",
+      "@type": "marin:PlanPhase",
+      "name": "Board Review",
+      "description": "Present the revised plan to the Board of Supervisors for review and direction.",
+      "marin:status": "Completed",
+      "order": 5,
+      "marin:percentComplete": 100,
+      "startDate": "2025-11-16",
+      "endDate": "2025-12-10"
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/timeline-phases/adoption",
+      "@type": "marin:PlanPhase",
+      "name": "Adoption",
+      "description": "Board of Supervisors formally adopts the Countywide Strategic Plan.",
+      "marin:status": "Completed",
+      "order": 6,
+      "marin:percentComplete": 100,
+      "startDate": "2025-12-16",
+      "endDate": "2025-12-16"
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/timeline-phases/implementation",
+      "@type": "marin:PlanPhase",
+      "name": "Implementation",
+      "description": "Departments and partners execute initiatives and projects toward each goal.",
+      "marin:status": "In Progress",
+      "order": 7,
+      "marin:percentComplete": 45,
+      "startDate": "2026-01-01",
+      "endDate": "2028-12-31"
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/timeline-phases/reporting",
+      "@type": "marin:PlanPhase",
+      "name": "Reporting",
+      "description": "Publish quarterly and annual progress reports against every goal and KPI.",
+      "marin:status": "In Progress",
+      "order": 8,
+      "marin:percentComplete": 20,
+      "startDate": "2026-01-01"
+    }
+  ]
+}

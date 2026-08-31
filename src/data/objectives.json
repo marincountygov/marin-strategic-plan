@@ -1,0 +1,72 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "marin": "https://marincountygov.github.io/marin-strategic-plan/vocab/"
+  },
+  "@graph": [
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/objectives/increase-affordable-units",
+      "@type": "marin:Objective",
+      "name": "Increase deed-restricted affordable units to 3,000",
+      "description": "Grow the countywide inventory of deed-restricted affordable units from a 2024 baseline of 1,200 to 3,000 by the end of 2030.",
+      "marin:status": "On Track",
+      "marin:owner": "https://marincountygov.github.io/marin-strategic-plan/participants/community-development-agency",
+      "marin:progress": 42,
+      "endDate": "2030-12-31",
+      "marin:baseline": "1,200 units (2024)",
+      "marin:target": "3,000 units by 2030",
+      "marin:dueDate": "2030-12-31",
+      "marin:successMeasures": [
+        "Deed-restricted units permitted and completed, tracked quarterly",
+        "Units affordable at 80% AMI or below"
+      ],
+      "isPartOf": "https://marincountygov.github.io/marin-strategic-plan/goals/increase-affordable-housing",
+      "hasPart": ["https://marincountygov.github.io/marin-strategic-plan/strategies/expand-housing-trust-fund"]
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/objectives/reduce-eviction-rate",
+      "@type": "marin:Objective",
+      "name": "Reduce the countywide eviction rate by 25%",
+      "description": "Reduce formal eviction filings countywide by 25% from a 2024 baseline through prevention and rapid rehousing programs.",
+      "marin:status": "In Progress",
+      "marin:owner": "https://marincountygov.github.io/marin-strategic-plan/participants/health-human-services",
+      "marin:progress": 30,
+      "endDate": "2028-12-31",
+      "marin:baseline": "1,840 filings (2024)",
+      "marin:target": "1,380 filings by 2028",
+      "marin:dueDate": "2028-12-31",
+      "isPartOf": "https://marincountygov.github.io/marin-strategic-plan/goals/reduce-housing-instability",
+      "hasPart": ["https://marincountygov.github.io/marin-strategic-plan/initiatives/eviction-prevention-program"]
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/objectives/cut-county-operations-emissions",
+      "@type": "marin:Objective",
+      "name": "Cut County operations emissions 40% below 2015 levels",
+      "description": "Reduce greenhouse gas emissions from County government operations 40% below 2015 levels by 2030.",
+      "marin:status": "At Risk",
+      "marin:owner": "https://marincountygov.github.io/marin-strategic-plan/participants/health-human-services",
+      "marin:progress": 22,
+      "endDate": "2030-12-31",
+      "marin:baseline": "18,400 MTCO2e (2015)",
+      "marin:target": "11,040 MTCO2e by 2030",
+      "marin:dueDate": "2030-12-31",
+      "isPartOf": "https://marincountygov.github.io/marin-strategic-plan/goals/reduce-ghg-emissions",
+      "hasPart": ["https://marincountygov.github.io/marin-strategic-plan/initiatives/fleet-electrification-initiative"]
+    },
+    {
+      "@id": "https://marincountygov.github.io/marin-strategic-plan/objectives/increase-digital-service-completion",
+      "@type": "marin:Objective",
+      "name": "Raise online completion rate for top 10 services to 80%",
+      "description": "Increase the share of the County's ten highest-volume services that residents can complete fully online, from 35% to 80%.",
+      "marin:status": "Planning",
+      "marin:owner": "https://marincountygov.github.io/marin-strategic-plan/participants/county-executive-office",
+      "marin:progress": 12,
+      "endDate": "2028-06-30",
+      "marin:baseline": "35% (2025)",
+      "marin:target": "80% by mid-2028",
+      "marin:dueDate": "2028-06-30",
+      "isPartOf": "https://marincountygov.github.io/marin-strategic-plan/goals/modernize-digital-services",
+      "hasPart": ["https://marincountygov.github.io/marin-strategic-plan/initiatives/online-permitting-initiative"]
+    }
+  ]
+}
