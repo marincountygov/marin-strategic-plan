@@ -40,6 +40,7 @@ const STATIC_ROUTES = [
   "/reports",
   "/resources",
   "/search",
+  "/json",
   "/design-tokens",
   "/accessibility",
   "/privacy",

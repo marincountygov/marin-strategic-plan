@@ -142,3 +142,11 @@ export function getByStatus<T extends BaseEntity = BaseEntity>(
 export function routeSlugsFor(type: string): string[] {
   return getAll(type).map((node) => slugFromId(node["@id"]));
 }
+
+/** Every src/data/*.json file with its own @graph nodes, in CONTENT_FILES
+ *  order — for the /json content browser, where each file is its own
+ *  section. Nothing else needs file-level grouping (getAllNodes()/getAll()
+ *  already merge across files), so this is kept separate from the index. */
+export function getContentByFile(): { file: string; nodes: BaseEntity[] }[] {
+  return CONTENT_FILES.map((file) => ({ file, nodes: readJsonLd(file)["@graph"] }));
+}
