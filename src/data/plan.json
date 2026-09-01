@@ -65,19 +65,19 @@
           "heading": "Learn More",
           "body": "PLACEHOLDER COPY — pending approved language from the comms provider (Linn). Envision Marin is the County's plan for a more affordable, resilient, and easy-to-work-with Marin. Explore the priorities, the process, and what's happening next.",
           "linkLabel": "What is Envision Marin?",
-          "linkHref": "/about"
+          "linkHref": "/plan"
         },
         {
           "heading": "Get Involved",
           "body": "Share your ideas and priorities with the County — online through Engage Marin, or in person at an upcoming workshop or open house near you.",
           "linkLabel": "See ways to participate",
-          "linkHref": "/engagement"
+          "linkHref": "/participate"
         },
         {
           "heading": "Impact",
           "body": "See how resident input is shaping the plan, drawn from Engage Marin activity and in-person events and roadshows.",
           "linkLabel": "View engagement progress",
-          "linkHref": "/performance"
+          "linkHref": "/progress"
         }
       ],
       "marin:impactStats": [

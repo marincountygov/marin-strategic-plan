@@ -27,6 +27,9 @@ test.beforeEach(async ({ page }) => {
 });
 const STATIC_ROUTES = [
   "/",
+  "/plan",
+  "/progress",
+  "/participate",
   "/about",
   "/vision",
   "/themes",
