@@ -41,6 +41,22 @@ relationship would only fragment the graph. `marin:relatedItems` is reserved
 for links that cross the hierarchy (a KPI pointing at the Outcome it
 measures, an Update pointing at the Milestone it reports on).
 
+## Homepage fields (`marin:StrategicPlan` only)
+
+The short-term simplified homepage (three cards + "Make your voice heard")
+reads from three fields on the plan node so its copy and stats are content,
+not JSX:
+
+- `marin:homeCards` — exactly 3 objects (`heading`, `body`, `linkLabel`,
+  `linkHref`): Learn More, Get Involved, Impact.
+- `marin:impactStats` — manually-reported figures with no source in this
+  graph yet (e.g. Engage Marin's own participation count). Anything we *can*
+  derive from our own data (e.g. completed-event count) is computed on the
+  homepage instead of duplicated here.
+- `marin:voiceActions` — the three time-tiered CTAs. The `attend-event`
+  action has no `url` — the homepage resolves it to the soonest upcoming
+  `Event` in `engagement.json`, falling back to `/engagement` if none.
+
 ## Type mapping
 
 | Section | `@type` | Why |

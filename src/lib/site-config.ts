@@ -6,10 +6,10 @@ import { NAV_SECTIONS } from "@/lib/content/sections";
 
 export const siteConfig = {
   /** Site name shown in the header, browser tab, and metadata. */
-  name: "Marin Countywide Strategic Plan",
+  name: "Envision Marin",
   /** One-sentence description for search engines and link previews. */
   description:
-    "The County of Marin's strategic plan, as a living, structured product: goals, initiatives, KPIs, and progress, updated as the plan moves forward.",
+    "Envision Marin — the County of Marin's Countywide Strategic Plan. See what we're doing, share your ideas, and follow the impact of your input.",
   /** The county's main site, linked from the gov banner and footer. */
   countyUrl: "https://www.marincounty.gov",
   /** Primary navigation, generated from the content-section registry

@@ -7,8 +7,8 @@
     {
       "@id": "https://marincountygov.github.io/marin-strategic-plan/plan/countywide-strategic-plan",
       "@type": "marin:StrategicPlan",
-      "name": "Marin Countywide Strategic Plan",
-      "description": "The County of Marin's shared plan for housing, climate, and digital government, tracked as a living set of goals, initiatives, and performance measures rather than a static document.",
+      "name": "Envision Marin",
+      "description": "Envision Marin is the County's Countywide Strategic Plan for housing, climate, and digital government — see what we're doing, share your ideas, and follow the impact of your input.",
       "text": "The Marin Countywide Strategic Plan aligns the Board of Supervisors, County departments, and community partners around a small set of measurable goals. Every goal on this site links down to the objectives, initiatives, and projects that implement it, and up to the performance measures that track it — the plan itself is the JSON graph, not a PDF.",
       "marin:status": "In Progress",
       "marin:owner": "https://marincountygov.github.io/marin-strategic-plan/participants/county-executive-office",
@@ -59,6 +59,51 @@
       "marin:featuredGoals": [
         "https://marincountygov.github.io/marin-strategic-plan/goals/increase-affordable-housing",
         "https://marincountygov.github.io/marin-strategic-plan/goals/reduce-ghg-emissions"
+      ],
+      "marin:homeCards": [
+        {
+          "heading": "Learn More",
+          "body": "PLACEHOLDER COPY — pending approved language from the comms provider (Linn). Envision Marin is the County's plan for a more affordable, resilient, and easy-to-work-with Marin. Explore the priorities, the process, and what's happening next.",
+          "linkLabel": "What is Envision Marin?",
+          "linkHref": "/about"
+        },
+        {
+          "heading": "Get Involved",
+          "body": "Share your ideas and priorities with the County — online through Engage Marin, or in person at an upcoming workshop or open house near you.",
+          "linkLabel": "See ways to participate",
+          "linkHref": "/engagement"
+        },
+        {
+          "heading": "Impact",
+          "body": "See how resident input is shaping the plan, drawn from Engage Marin activity and in-person events and roadshows.",
+          "linkLabel": "View engagement progress",
+          "linkHref": "/performance"
+        }
+      ],
+      "marin:impactStats": [
+        { "label": "Constituents engaged", "value": "35,000+" }
+      ],
+      "marin:voiceActions": [
+        {
+          "id": "share-one-idea",
+          "timeCommitment": "Have 1 minute?",
+          "label": "Share one idea",
+          "description": "Tell us one thing that matters to you about Marin's future.",
+          "url": "https://engage.marincounty.gov"
+        },
+        {
+          "id": "share-multiple-ideas",
+          "timeCommitment": "Have 10 minutes?",
+          "label": "Share multiple ideas",
+          "description": "Answer a short set of questions about the plan's priorities.",
+          "url": "https://engage.marincounty.gov"
+        },
+        {
+          "id": "attend-event",
+          "timeCommitment": "Have an hour?",
+          "label": "Attend an event in your community",
+          "description": "Join an upcoming workshop or open house near you."
+        }
       ]
     }
   ]

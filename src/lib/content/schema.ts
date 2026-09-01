@@ -62,6 +62,42 @@ export const StrategicPlanSchema = BaseEntitySchema.extend({
   }),
   "marin:faq": z.array(z.object({ question: z.string(), answer: z.string() })),
   "marin:featuredGoals": z.array(RefSchema).optional(),
+  // The three homepage cards (Learn More / Get Involved / Impact) — content
+  // for the simplified short-term homepage, kept as data rather than
+  // hardcoded JSX so the copy can be swapped (e.g. for approved comms
+  // language) without touching page code.
+  "marin:homeCards": z
+    .array(
+      z.object({
+        heading: z.string(),
+        body: z.string(),
+        linkLabel: z.string(),
+        linkHref: z.string(),
+      }),
+    )
+    .length(3)
+    .optional(),
+  // Manually-reported engagement stats (the "Impact" card). Stats derivable
+  // from our own data (e.g. events held) are computed on the homepage
+  // instead of duplicated here — this holds only what has to come from
+  // Engage's API or a manual count.
+  "marin:impactStats": z
+    .array(z.object({ label: z.string(), value: z.string() }))
+    .optional(),
+  // The "Make your voice heard" time-tiered calls to action. The
+  // "attend-event" action's url is intentionally omitted here — the
+  // homepage fills it in with whatever engagement.json event is soonest.
+  "marin:voiceActions": z
+    .array(
+      z.object({
+        id: z.enum(["share-one-idea", "share-multiple-ideas", "attend-event"]),
+        timeCommitment: z.string(),
+        label: z.string(),
+        description: z.string(),
+        url: z.string().url().optional(),
+      }),
+    )
+    .optional(),
 });
 export type StrategicPlanEntity = z.infer<typeof StrategicPlanSchema>;
 
