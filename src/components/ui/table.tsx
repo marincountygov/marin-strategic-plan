@@ -8,7 +8,14 @@ function Table({ className, ...props }: React.ComponentProps<"table">) {
   return (
     <div
       data-slot="table-container"
-      className="relative w-full overflow-x-auto"
+      className="relative w-full overflow-x-auto focus:outline-none focus-visible:ring-2 focus-visible:ring-marin-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-marin-blue-400 dark:focus-visible:ring-offset-stone-900"
+      // A container this narrow can only scroll by pointer/touch otherwise —
+      // WCAG 2.1.1/2.1.3 requires a keyboard path to any scrollable region.
+      // Upstream shadcn doesn't set this; only surfaces once a table is
+      // actually wide enough to overflow (narrow viewports, wide tables).
+      tabIndex={0}
+      role="region"
+      aria-label="Scrollable table"
     >
       <table
         data-slot="table"

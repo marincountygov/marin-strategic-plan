@@ -19,7 +19,8 @@ export const siteConfig = {
    *  county site; keep those entries and build the pages out. */
   footerLinks: [
     { label: "About", href: "/about" },
-    { label: "Content Data", href: "/json" },
+    { label: "Dashboard", href: "/dashboard" },
+    { label: "Data Explorer", href: "/json" },
     { label: "Accessibility", href: "/accessibility" },
     { label: "Privacy", href: "/privacy" },
   ],

@@ -8,17 +8,11 @@ import {
 } from "@/components/ui/table";
 import { ProgressBar } from "./ProgressBar";
 import { StatusBadge } from "./StatusBadge";
+import { percentToTarget } from "@/lib/content/kpi-math";
 import type { KpiSchema } from "@/lib/content/schema";
 import type { z } from "zod";
 
 type Kpi = z.infer<typeof KpiSchema>;
-
-function percentToTarget(kpi: Kpi): number {
-  const { "marin:baseline": baseline, "marin:target": target, "marin:currentValue": current } = kpi;
-  if (target === baseline) return current >= target ? 100 : 0;
-  const raw = ((current - baseline) / (target - baseline)) * 100;
-  return Math.round(Math.min(100, Math.max(0, raw)));
-}
 
 export function KpiDashboard({ kpis }: { kpis: Kpi[] }) {
   return (
