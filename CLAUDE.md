@@ -6,6 +6,21 @@ This is the County of Marin Strategic Plan website, built from
 `marin-site-template`. AGENTS.md carries the template's design-token,
 accessibility, and component standards; they apply here unchanged.
 
+**This repo does not use `marin-ui`, `marin-skills`, or
+`marin-digital-standards`.** Those govern a different family of Marin
+projects — zero-build static HTML apps built from `marin-app-template`
+(`marin-expense`, `marin-cupa-fees`, `marin-decision-maker`, and similar),
+which vendor `marin-ui`'s brand bundle via `sync-consumer.sh` and follow
+`marin-skills`' SKILL.md playbooks. This repo is a Next.js/React/Tailwind
+site with its own independent, self-contained stack and standards, entirely
+inherited from `marin-site-template`'s own AGENTS.md above — nothing here
+should reference `marin-ui` components, sync a `BRAND_VERSION`, or defer to
+a `marin-skills` skill for review or verification. If a task or a stray file
+here starts to look like that other pattern (a `marin.yml`, a
+`shared/app-brand.css`, a `sync-marin-ui-*` branch), that's a sign of
+cross-contamination from working across both project families in the same
+session — flag it rather than carrying it through.
+
 ## What makes this repo different from the template
 
 The entire site renders from structured content, not hardcoded pages:

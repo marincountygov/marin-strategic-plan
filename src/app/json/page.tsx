@@ -1,16 +1,27 @@
 import type { Metadata } from "next";
-import { getContentByFile } from "@/lib/content/graph";
+import Link from "next/link";
+import { getContentByFile, getOwner } from "@/lib/content/graph";
+import { urlForNode } from "@/lib/content/routes";
 import { JsonValue, humanizeKey } from "@/components/content/JsonValue";
+import { StatusBadge } from "@/components/content/StatusBadge";
+import { PriorityBadge } from "@/components/content/PriorityBadge";
+import { ProgressBar } from "@/components/content/ProgressBar";
 import { BASE_PATH } from "@/lib/base-path";
+import { SECTION_LABELS } from "./section-labels";
 
-export const metadata: Metadata = { title: "Content Data" };
+export const metadata: Metadata = { title: "Data Explorer" };
+
+function typeLabel(node: { "@type": string | string[] }): string {
+  const types = Array.isArray(node["@type"]) ? node["@type"] : [node["@type"]];
+  return types.map(humanizeKey).join(", ");
+}
 
 /**
- * Field-by-field browser over every src/data/*.json file — lets anyone see
- * exactly what data drives the site, without reading raw JSON. One section
- * per source file, one collapsible entry per node, every field rendered
- * generically (JsonValue) so this needs no per-type code and stays correct
- * as fields are added.
+ * Every item behind the site, in plain language first: name, description,
+ * and status are always visible — no click required — with the exact
+ * underlying JSON-LD fields one toggle away in the same card for anyone who
+ * wants them. Same page serves both a quick skim and a full technical
+ * drill-down; nothing about the data is hidden, just sequenced.
  */
 export default function JsonBrowserPage() {
   const files = getContentByFile();
@@ -18,18 +29,20 @@ export default function JsonBrowserPage() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
       <h1 className="font-product-display text-3xl font-semibold text-stone-900 sm:text-4xl dark:text-stone-50">
-        Content Data
+        Data Explorer
       </h1>
       <p className="mt-2 max-w-2xl font-product-body text-base text-marin-dark-gray dark:text-stone-300">
-        Every field behind this site, straight from the source JSON-LD files
-        in <code className="font-product-mono text-sm">src/data/</code> — no
-        page on the site hides or reformats this data, it&apos;s just easier
-        to scan here than as raw JSON. For machine consumption, the same data
-        is available as{" "}
-        {/* underline by default, not just on hover: this link sits inline in
-            a paragraph, and its color contrast against the surrounding text
-            (1.49:1) is well under the 3:1 that WCAG 1.4.1 requires when
-            color is the only distinguishing cue. */}
+        Every goal, KPI, milestone, and update behind this site, in one place.
+        Each item shows its plain-language summary; open{" "}
+        <span className="font-product-mono text-sm">View all fields</span> on
+        any item for the exact underlying data.
+      </p>
+      <p className="mt-2 max-w-2xl font-product-body text-sm text-marin-dark-gray dark:text-stone-400">
+        Technical note: this reads directly from the same JSON-LD source
+        files (<code className="font-product-mono text-xs">src/data/</code>)
+        that render the rest of the site — nothing here is reformatted or
+        summarized from something else. A machine-readable export of the
+        same data is available as{" "}
         <a
           href={`${BASE_PATH}/data/graph.json`}
           className="rounded text-marin-blue-700 underline underline-offset-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-marin-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-marin-blue-300 dark:focus-visible:ring-marin-blue-400 dark:focus-visible:ring-offset-stone-900"
@@ -39,7 +52,7 @@ export default function JsonBrowserPage() {
         .
       </p>
 
-      <nav aria-label="Jump to file" className="mt-6">
+      <nav aria-label="Jump to section" className="mt-6">
         <ul className="flex flex-wrap gap-x-4 gap-y-1 font-product-body text-sm">
           {files.map(({ file, nodes }) => (
             <li key={file}>
@@ -47,7 +60,7 @@ export default function JsonBrowserPage() {
                 href={`#${file}`}
                 className="rounded text-marin-blue-700 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-marin-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-marin-blue-300 dark:focus-visible:ring-marin-blue-400 dark:focus-visible:ring-offset-stone-900"
               >
-                {file} ({nodes.length})
+                {SECTION_LABELS[file].title} ({nodes.length})
               </a>
             </li>
           ))}
@@ -55,44 +68,87 @@ export default function JsonBrowserPage() {
       </nav>
 
       <div className="mt-10 space-y-12">
-        {files.map(({ file, nodes }) => (
-          <section key={file} id={file} className="scroll-mt-20">
-            <h2 className="font-product-display text-xl font-semibold text-stone-900 dark:text-stone-50">
-              {file}
-            </h2>
-            <p className="font-product-body text-sm text-marin-dark-gray dark:text-stone-400">
-              {nodes.length} {nodes.length === 1 ? "node" : "nodes"}
-            </p>
+        {files.map(({ file, nodes }) => {
+          const section = SECTION_LABELS[file];
+          return (
+            <section key={file} id={file} className="scroll-mt-20">
+              <h2 className="font-product-display text-xl font-semibold text-stone-900 dark:text-stone-50">
+                {section.title}
+              </h2>
+              <p className="font-product-body text-sm text-marin-dark-gray dark:text-stone-400">
+                {section.description}
+              </p>
+              <p className="font-product-mono text-xs text-marin-dark-gray dark:text-stone-400">
+                {file} · {nodes.length} {nodes.length === 1 ? "item" : "items"}
+              </p>
 
-            <div className="mt-4 space-y-3">
-              {nodes.map((node) => (
-                <details
-                  key={node["@id"]}
-                  className="rounded-xl bg-card p-4 shadow-xs ring-1 ring-foreground/10"
-                >
-                  <summary className="cursor-pointer rounded font-product-display text-base font-semibold text-stone-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-marin-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-stone-50 dark:focus-visible:ring-marin-blue-400 dark:focus-visible:ring-offset-stone-900">
-                    {node.name}{" "}
-                    <span className="font-product-mono text-xs font-normal text-marin-dark-gray dark:text-stone-400">
-                      {Array.isArray(node["@type"]) ? node["@type"].join(", ") : node["@type"]}
-                    </span>
-                  </summary>
-                  <dl className="mt-4 space-y-3 border-t border-stone-200 pt-4 dark:border-stone-800">
-                    {Object.entries(node).map(([key, value]) => (
-                      <div key={key}>
-                        <dt className="font-product-body text-xs font-semibold tracking-wide text-marin-dark-gray uppercase dark:text-stone-400">
-                          {humanizeKey(key)}
-                        </dt>
-                        <dd className="mt-0.5 font-product-body text-sm text-stone-900 dark:text-stone-100">
-                          <JsonValue value={value} />
-                        </dd>
+              <div className="mt-4 space-y-3">
+                {nodes.map((node) => {
+                  const owner = getOwner(node);
+                  const status = node["marin:status"];
+                  const priority = node["marin:priority"];
+                  const progress = node["marin:progress"];
+
+                  return (
+                    <div
+                      key={node["@id"]}
+                      className="rounded-xl bg-card p-4 shadow-xs ring-1 ring-foreground/10"
+                    >
+                      {/* Plain-language summary — always visible, no click required. */}
+                      <div className="flex flex-wrap items-center gap-2">
+                        {status && <StatusBadge status={status} />}
+                        {priority && <PriorityBadge priority={priority} />}
+                        <span className="font-product-mono text-xs text-marin-dark-gray dark:text-stone-400">
+                          {typeLabel(node)}
+                        </span>
                       </div>
-                    ))}
-                  </dl>
-                </details>
-              ))}
-            </div>
-          </section>
-        ))}
+                      <p className="mt-1.5 font-product-display text-base font-semibold text-stone-900 dark:text-stone-50">
+                        <Link
+                          href={urlForNode(node)}
+                          className="rounded hover:text-marin-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-marin-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:hover:text-marin-blue-300 dark:focus-visible:ring-marin-blue-400 dark:focus-visible:ring-offset-stone-900"
+                        >
+                          {node.name}
+                        </Link>
+                      </p>
+                      <p className="mt-1 font-product-body text-sm text-stone-700 dark:text-stone-300">
+                        {node.description}
+                      </p>
+                      {owner && (
+                        <p className="mt-1 font-product-body text-xs text-marin-dark-gray dark:text-stone-400">
+                          Owned by {owner.name}
+                        </p>
+                      )}
+                      {typeof progress === "number" && (
+                        <div className="mt-3 max-w-xs">
+                          <ProgressBar value={progress} />
+                        </div>
+                      )}
+
+                      {/* Deeper data — every field, exactly as stored, one click away. */}
+                      <details className="mt-3">
+                        <summary className="cursor-pointer rounded font-product-body text-sm text-marin-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-marin-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-marin-blue-300 dark:focus-visible:ring-marin-blue-400 dark:focus-visible:ring-offset-stone-900">
+                          View all fields
+                        </summary>
+                        <dl className="mt-3 space-y-3 border-t border-stone-200 pt-3 dark:border-stone-800">
+                          {Object.entries(node).map(([key, value]) => (
+                            <div key={key}>
+                              <dt className="font-product-body text-xs font-semibold tracking-wide text-marin-dark-gray uppercase dark:text-stone-400">
+                                {humanizeKey(key)}
+                              </dt>
+                              <dd className="mt-0.5 font-product-body text-sm text-stone-900 dark:text-stone-100">
+                                <JsonValue value={value} />
+                              </dd>
+                            </div>
+                          ))}
+                        </dl>
+                      </details>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+          );
+        })}
       </div>
     </div>
   );
