@@ -1,33 +1,13 @@
 import fs from "node:fs";
 import path from "node:path";
 import { slugFromId } from "./context";
+import { CONTENT_FILES } from "./content-files";
 import type { BaseEntity, Status } from "./schema";
 import type { StrategicPlanEntity } from "./schema";
 
-const DATA_DIR = path.join(process.cwd(), "src/data");
+export { CONTENT_FILES };
 
-export const CONTENT_FILES = [
-  "plan.json",
-  "themes.json",
-  "goals.json",
-  "objectives.json",
-  "strategies.json",
-  "initiatives.json",
-  "projects.json",
-  "milestones.json",
-  "deliverables.json",
-  "outcomes.json",
-  "kpis.json",
-  "timeline-phases.json",
-  "research.json",
-  "engagement.json",
-  "participants.json",
-  "communications.json",
-  "resources.json",
-  "updates.json",
-  "reports.json",
-  "governance.json",
-] as const;
+const DATA_DIR = path.join(process.cwd(), "src/data");
 
 interface JsonLdDocument {
   "@context": unknown;
