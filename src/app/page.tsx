@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { MessageCircle } from "lucide-react";
+import { siFacebook, siInstagram, siX, siYoutube } from "simple-icons";
 import {
   Card,
   CardContent,
@@ -13,16 +15,44 @@ import { getAll, getPlan } from "@/lib/content/graph";
 import type { CommunicationChannel } from "@/lib/content/schema";
 
 /**
- * Homepage. Short-term simplified structure: a hero, three cards (Learn
- * More / Get Involved / Impact), and the "Make your voice heard" CTA set
- * followed by the communications channels from communications.json. The
- * "Envision Marin so far" stats band is commented out below until there's a
- * real engagement-numbers source to drive it — see marin:impactStats in
- * schema.ts. Everything else (goals, timeline, KPIs, etc. from the earlier
- * content-graph build) was removed for the MVP; the site is just the
- * homepage and /about, both driven by plan.json so copy can be updated
- * without touching page code.
+ * Homepage. Short-term simplified structure: a hero, an empty dark-blue
+ * weight band, three cards (Learn More / Get Involved / Impact), the "Make
+ * your voice heard" CTA set, and "Stay connected" (communications.json,
+ * rendered as plain icon+label tiles). Everything else (goals, timeline,
+ * KPIs, etc. from the earlier content-graph build) was removed for the MVP;
+ * the site is just the homepage and /about, both driven by plan.json so
+ * copy can be updated without touching page code.
  */
+
+// Real brand marks in currentColor (not each platform's own brand color) so
+// they stay inside the site's token palette rather than importing five more
+// arbitrary hex values — see AGENTS.md § Design tokens. Keyed by the last
+// segment of the channel's @id. Anything not in this map (e.g. Engage
+// Marin, a Service rather than a social account) falls back to a generic
+// icon rather than guessing at a logo that doesn't exist for it.
+const SOCIAL_ICON_PATH: Record<string, string> = {
+  facebook: siFacebook.path,
+  instagram: siInstagram.path,
+  x: siX.path,
+  youtube: siYoutube.path,
+};
+
+function channelSlug(id: string): string {
+  return id.split("/").pop() ?? "";
+}
+
+function ChannelIcon({ id }: { id: string }) {
+  const path = SOCIAL_ICON_PATH[channelSlug(id)];
+  if (path) {
+    return (
+      <svg viewBox="0 0 24 24" className="size-7" fill="currentColor" aria-hidden="true">
+        <path d={path} />
+      </svg>
+    );
+  }
+  return <MessageCircle aria-hidden="true" className="size-7" />;
+}
+
 export default function Home() {
   const plan = getPlan();
   const channels = getAll<CommunicationChannel>("Service").concat(
@@ -65,27 +95,11 @@ export default function Home() {
         </div>
         <LandscapeIllustration className="-mt-px block h-24 w-full sm:h-40 lg:h-auto" />
 
-        {/* "Envision Marin so far" stats band — commented out until real
-            engagement numbers are wired up (see marin:impactStats in
-            schema.ts and the note above).
-        <div className="bg-marin-blue-900 px-5 py-7 sm:px-10 sm:py-8 lg:px-14">
-          <h2 className="font-product-body text-xs font-semibold tracking-wider text-marin-blue-200 uppercase">
-            Envision Marin so far
-          </h2>
-          <dl className="mt-5 grid grid-cols-2 gap-x-6 gap-y-7 sm:grid-cols-4">
-            {(plan["marin:impactStats"] ?? []).map((stat) => (
-              <div key={stat.label} className="flex flex-col-reverse gap-1">
-                <dt className="font-product-body text-sm leading-snug text-marin-blue-200">
-                  {stat.label}
-                </dt>
-                <dd className="font-product-display text-3xl font-semibold tracking-tight text-marin-blue-50 sm:text-4xl">
-                  {stat.value}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-        */}
+        {/* Deliberately empty — just gives the hero some dark-blue visual
+            weight underneath it. Was the "Envision Marin so far" stats band
+            (see marin:impactStats in schema.ts); no engagement-numbers
+            source to drive real stats yet, so there's nothing in it. */}
+        <div className="h-12 bg-marin-blue-900 sm:h-16 lg:h-20" />
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
@@ -151,27 +165,21 @@ export default function Home() {
 
           {channels.length > 0 && (
             <div className="mt-12">
-              <h3 className="text-center font-product-display text-xl font-semibold text-stone-900 dark:text-stone-50">
+              <h2 className="text-center font-product-display text-xl font-semibold text-stone-900 dark:text-stone-50">
                 Stay connected
-              </h3>
-              <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              </h2>
+              <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
                 {channels.map((channel) => (
-                  <Card key={channel["@id"]}>
-                    <CardHeader>
-                      <CardTitle className="font-product-display text-base">{channel.name}</CardTitle>
-                      <CardDescription>{channel.description}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <a
-                        href={channel.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="rounded font-product-body text-sm font-medium text-marin-blue-700 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-marin-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-marin-blue-300 dark:focus-visible:ring-marin-blue-400 dark:focus-visible:ring-offset-stone-900"
-                      >
-                        Visit →
-                      </a>
-                    </CardContent>
-                  </Card>
+                  <a
+                    key={channel["@id"]}
+                    href={channel.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex flex-col items-center gap-2 rounded-lg p-4 text-center text-stone-700 transition-colors hover:bg-white hover:text-marin-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-marin-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-marin-blue-50 dark:text-stone-300 dark:hover:bg-stone-800 dark:hover:text-marin-blue-300 dark:focus-visible:ring-marin-blue-400 dark:focus-visible:ring-offset-stone-900"
+                  >
+                    <ChannelIcon id={channel["@id"]} />
+                    <span className="font-product-body text-sm font-medium">{channel.name}</span>
+                  </a>
                 ))}
               </div>
             </div>

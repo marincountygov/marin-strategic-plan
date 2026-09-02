@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { BASE_PATH } from "@/lib/base-path";
 import { siteConfig } from "@/lib/site-config";
 
 /**
@@ -12,11 +13,14 @@ export function GovBanner() {
       className="bg-stone-900 text-white dark:bg-black"
     >
       <div className="mx-auto flex max-w-7xl items-center gap-2 px-4 py-1.5 sm:px-6 lg:px-8">
-        {/* next/image rather than a bare <img> so the src picks up basePath
-            on subpath deploys (GitHub Pages project sites). With images
-            unoptimized this renders as a plain img. */}
+        {/* With images.unoptimized this renders as a plain <img> — no
+            optimizer route to carry basePath through, so it has to be
+            prepended by hand. Without this, the seal 404s on the live
+            GitHub Pages deploy (served under /marin-strategic-plan) while
+            still working locally (basePath is empty in dev), which is what
+            made it look like a SiteLock/auth issue rather than a path bug. */}
         <Image
-          src="/gold-seal.svg"
+          src={`${BASE_PATH}/gold-seal.svg`}
           alt=""
           aria-hidden="true"
           width={217}
