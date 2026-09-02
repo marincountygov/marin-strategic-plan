@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Shield } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 
 /**
@@ -44,6 +45,20 @@ export function SiteHeader() {
             ))}
           </ul>
         </nav>
+
+        {/* A pill, not a 4th item in the nav above — matches Engage Marin's
+            own header pattern (their real markup has exactly this: a
+            bordered Shield-icon pill labeled "Admin"), and keeps the
+            3-item primary nav from the earlier redesign untouched. Their
+            corner radius is a one-off 10px value; the "lg" radius token is
+            the nearest fit, per AGENTS.md's no-arbitrary-values rule. */}
+        <Link
+          href="/admin"
+          className="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-marin-blue-200 bg-marin-blue-50 px-2.5 py-1.5 font-product-body text-xs font-medium text-marin-blue-700 transition-colors hover:bg-marin-blue-100 hover:text-marin-blue-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-marin-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white sm:text-sm dark:border-marin-blue-800 dark:bg-marin-blue-950 dark:text-marin-blue-300 dark:hover:bg-marin-blue-900 dark:hover:text-marin-blue-100 dark:focus-visible:ring-marin-blue-400 dark:focus-visible:ring-offset-stone-900"
+        >
+          <Shield aria-hidden="true" className="size-3.5 sm:size-4" />
+          Admin
+        </Link>
       </div>
     </header>
   );

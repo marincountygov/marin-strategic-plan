@@ -2,15 +2,9 @@ import Link from "next/link";
 import { getById } from "@/lib/content/graph";
 import { urlForNode } from "@/lib/content/routes";
 import { BASE_URL } from "@/lib/content/context";
+import { humanizeKey } from "@/lib/content/humanize";
 
-/** "marin:currentValue" -> "Current Value", "@id" -> "@id" (left alone —
- *  still meaningful as-is), "startDate" -> "Start Date". */
-export function humanizeKey(key: string): string {
-  if (key.startsWith("@")) return key;
-  const withoutPrefix = key.replace(/^marin:/, "");
-  const spaced = withoutPrefix.replace(/([a-z0-9])([A-Z])/g, "$1 $2");
-  return spaced.charAt(0).toUpperCase() + spaced.slice(1);
-}
+export { humanizeKey };
 
 /** Renders any field value from the content graph generically — string,
  *  number, boolean, array, or nested object — so every node type is

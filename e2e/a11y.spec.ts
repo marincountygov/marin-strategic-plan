@@ -3,6 +3,7 @@ import { expect, test } from "@playwright/test";
 import { getAll } from "../src/lib/content/graph";
 import { slugFromId } from "../src/lib/content/context";
 import { UNLOCK_STORAGE_KEY } from "../src/lib/site-lock";
+import { COLLECTIONS } from "../src/app/admin/collection-meta";
 
 /**
  * WCAG 2.2 AA scan over every route, in light, dark, and mobile projects.
@@ -45,6 +46,8 @@ const STATIC_ROUTES = [
   "/search",
   "/json",
   "/dashboard",
+  "/admin",
+  ...COLLECTIONS.map((collection) => `/admin/${collection.slug}`),
   "/design-tokens",
   "/accessibility",
   "/privacy",
