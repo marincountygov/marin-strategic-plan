@@ -5,7 +5,7 @@
   "description": "The County of Marin's strategic plan as a JSON-LD/Schema.org-driven website, built on marin-site-template.",
   "scripts": {
     "dev": "next dev",
-    "build": "next build && tsx scripts/generate-public-data.ts && tsx scripts/generate-search-index.ts",
+    "build": "next build && tsx scripts/generate-public-data.ts",
     "preview": "serve out",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
