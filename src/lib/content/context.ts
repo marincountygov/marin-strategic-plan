@@ -12,14 +12,3 @@ export const JSONLD_CONTEXT = {
   "@vocab": "https://schema.org/",
   marin: `${BASE_URL}/vocab/`,
 } as const;
-
-/** Build a full @id URL for a content section + slug, e.g. id("goals", "housing-access"). */
-export function id(section: string, slug: string): string {
-  return `${BASE_URL}/${section}/${slug}`;
-}
-
-/** Last path segment of an @id — used as the route slug. */
-export function slugFromId(nodeId: string): string {
-  const parts = nodeId.split("/");
-  return parts[parts.length - 1];
-}

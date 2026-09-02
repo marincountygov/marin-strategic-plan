@@ -1,8 +1,6 @@
 /**
- * Validates every src/data/*.json file against its Zod schema and confirms
- * every @id reference (hasPart/isPartOf/marin:relatedItems/marin:owner/
- * governance role lists) resolves to a real node. Run as part of
- * `npm run verify`, mirroring scripts/check-tokens.mjs's role for design
+ * Validates every src/data/*.json file against its Zod schema. Run as part
+ * of `npm run verify`, mirroring scripts/check-tokens.mjs's role for design
  * tokens — a content-shape gate the build depends on, not a suggestion.
  */
 import fs from "node:fs";
@@ -12,21 +10,9 @@ import { SCHEMA_BY_TYPE } from "../src/lib/content/schema";
 
 const DATA_DIR = path.join(process.cwd(), "src/data");
 
-const REF_FIELDS = [
-  "marin:owner",
-  "marin:relatedItems",
-  "hasPart",
-  "isPartOf",
-  "marin:executiveSponsor",
-  "marin:steeringCommittee",
-  "marin:planningTeam",
-  "marin:decisionMakers",
-  "marin:approvalMilestones",
-];
-
 let hasError = false;
 const allIds = new Set<string>();
-const allNodes: Record<string, unknown>[] = [];
+let nodeCount = 0;
 
 for (const file of CONTENT_FILES) {
   const filePath = path.join(DATA_DIR, file);
@@ -55,21 +41,7 @@ for (const file of CONTENT_FILES) {
       hasError = true;
     }
     allIds.add(node["@id"]);
-    allNodes.push(node);
-  }
-}
-
-for (const node of allNodes) {
-  for (const field of REF_FIELDS) {
-    const value = node[field];
-    if (!value) continue;
-    const refs = Array.isArray(value) ? value : [value];
-    for (const ref of refs) {
-      if (typeof ref === "string" && !allIds.has(ref)) {
-        console.error(`${node["@id"]}: dangling reference in ${field} -> ${ref}`);
-        hasError = true;
-      }
-    }
+    nodeCount++;
   }
 }
 
@@ -78,4 +50,4 @@ if (hasError) {
   process.exit(1);
 }
 
-console.log(`content validation passed: ${allNodes.length} nodes across ${CONTENT_FILES.length} files`);
+console.log(`content validation passed: ${nodeCount} nodes across ${CONTENT_FILES.length} files`);

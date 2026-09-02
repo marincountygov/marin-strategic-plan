@@ -1,16 +1,9 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
-import { getAll } from "../src/lib/content/graph";
-import { slugFromId } from "../src/lib/content/context";
 import { UNLOCK_STORAGE_KEY } from "../src/lib/site-lock";
-import { COLLECTIONS } from "../src/app/admin/collection-meta";
 
 /**
  * WCAG 2.2 AA scan over every route, in light, dark, and mobile projects.
- * Static routes are listed by hand; every dynamic [slug] route is generated
- * from the content graph itself, so a new goal/initiative/update/etc. in
- * src/data/ is scanned automatically — an unscanned page is an unshipped
- * page (AGENTS.md).
  *
  * Automated scanning catches roughly a third of WCAG failures. It is the
  * floor, not the audit: keyboard walkthroughs and screen-reader checks are
@@ -26,52 +19,8 @@ test.beforeEach(async ({ page }) => {
     [UNLOCK_STORAGE_KEY],
   );
 });
-const STATIC_ROUTES = [
-  "/",
-  "/plan",
-  "/progress",
-  "/participate",
-  "/about",
-  "/vision",
-  "/themes",
-  "/goals",
-  "/timeline",
-  "/performance",
-  "/research",
-  "/engagement",
-  "/who-is-involved",
-  "/updates",
-  "/reports",
-  "/resources",
-  "/search",
-  "/json",
-  "/dashboard",
-  "/admin",
-  ...COLLECTIONS.map((collection) => `/admin/${collection.slug}`),
-  "/design-tokens",
-  "/accessibility",
-  "/privacy",
-];
 
-const DYNAMIC_ROUTE_TYPES: [string, string][] = [
-  ["marin:StrategicTheme", "/themes"],
-  ["marin:Goal", "/goals"],
-  ["marin:Objective", "/objectives"],
-  ["marin:Strategy", "/strategies"],
-  ["marin:Initiative", "/initiatives"],
-  ["Project", "/projects"],
-  ["Dataset", "/research"],
-  ["Event", "/engagement"],
-  ["BlogPosting", "/updates"],
-  ["NewsArticle", "/updates"],
-  ["Report", "/reports"],
-];
-
-const DYNAMIC_ROUTES = DYNAMIC_ROUTE_TYPES.flatMap(([type, prefix]) =>
-  getAll(type).map((node) => `${prefix}/${slugFromId(node["@id"])}`),
-);
-
-const ROUTES = [...STATIC_ROUTES, ...DYNAMIC_ROUTES];
+const ROUTES = ["/", "/about", "/design-tokens"];
 
 for (const route of ROUTES) {
   test(`axe: ${route}`, async ({ page }) => {

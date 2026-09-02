@@ -15,13 +15,11 @@ export const siteConfig = {
   /** Primary navigation, generated from the content-section registry
    *  (src/lib/content/sections.ts) rather than hand-duplicated here. */
   nav: NAV_SECTIONS.map(({ label, href }) => ({ label, href })),
-  /** Footer links. Accessibility and privacy pages are expected on every
-   *  county site; keep those entries and build the pages out. */
+  /** Footer links. Accessibility and privacy are the County's own
+   *  county-wide pages, not site-specific ones — no local placeholder
+   *  page to maintain here. */
   footerLinks: [
-    { label: "About", href: "/about" },
-    { label: "Dashboard", href: "/dashboard" },
-    { label: "Data Explorer", href: "/json" },
-    { label: "Accessibility", href: "/accessibility" },
-    { label: "Privacy", href: "/privacy" },
+    { label: "Accessibility", href: "https://www.marincounty.gov/website-accessibility" },
+    { label: "Privacy", href: "https://www.marincounty.gov/privacy-policy" },
   ],
 } as const;

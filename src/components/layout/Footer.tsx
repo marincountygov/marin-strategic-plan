@@ -29,16 +29,29 @@ export function Footer() {
               {siteConfig.name}
             </h2>
             <ul className="space-y-2 font-product-body">
-              {siteConfig.footerLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="rounded text-sm text-stone-400 transition-colors hover:text-marin-blue-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-marin-blue-400"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+              {siteConfig.footerLinks.map((link) => {
+                const external = link.href.startsWith("http");
+                const linkClassName =
+                  "rounded text-sm text-stone-400 transition-colors hover:text-marin-blue-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-marin-blue-400";
+                return (
+                  <li key={link.href}>
+                    {external ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={linkClassName}
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link href={link.href} className={linkClassName}>
+                        {link.label}
+                      </Link>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </nav>
         </div>
