@@ -16,12 +16,13 @@ import type { CommunicationChannel } from "@/lib/content/schema";
 
 /**
  * Homepage. Short-term simplified structure: a hero, an empty dark-blue
- * weight band, three cards (Learn More / Get Involved / Impact), the "Make
- * your voice heard" CTA set, and "Stay connected" (communications.json,
- * rendered as plain icon+label tiles). Everything else (goals, timeline,
- * KPIs, etc. from the earlier content-graph build) was removed for the MVP;
- * the site is just the homepage and /about, both driven by plan.json so
- * copy can be updated without touching page code.
+ * weight band, three cards (the two authored marin:homeCards plus a third
+ * always synthesized from marin:newsletter), the "Make your voice heard"
+ * CTA set, and "Follow us" (communications.json, rendered as plain
+ * icon+label tiles). Everything else (goals, timeline, KPIs, etc. from the
+ * earlier content-graph build) was removed for the MVP; the site is just
+ * the homepage and /about, both driven by plan.json so copy can be updated
+ * without touching page code.
  */
 
 // Real brand marks in currentColor (not each platform's own brand color) so
@@ -60,7 +61,20 @@ export default function Home() {
     getAll<CommunicationChannel>("ContactPoint"),
   );
 
-  const homeCards = plan["marin:homeCards"] ?? [];
+  const newsletter = plan["marin:newsletter"];
+  const homeCards = [
+    ...(plan["marin:homeCards"] ?? []),
+    ...(newsletter
+      ? [
+          {
+            heading: newsletter.heading,
+            body: newsletter.body,
+            linkLabel: newsletter.linkLabel,
+            linkHref: newsletter.linkHref,
+          },
+        ]
+      : []),
+  ];
   const voiceActions = plan["marin:voiceActions"] ?? [];
 
   return (
@@ -105,22 +119,24 @@ export default function Home() {
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <div className="grid gap-6 md:grid-cols-3">
           {homeCards.map((card) => {
-            const external = card.linkHref.startsWith("http");
+            const external = card.linkHref?.startsWith("http");
             return (
               <Card key={card.heading} className="flex flex-col">
                 <CardHeader>
                   <CardTitle className="font-product-display text-xl">{card.heading}</CardTitle>
                   <CardDescription>{card.body}</CardDescription>
                 </CardHeader>
-                <CardContent className="mt-auto">
-                  <Link
-                    href={card.linkHref}
-                    {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                    className="rounded font-product-body text-sm font-medium text-marin-blue-700 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-marin-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-marin-blue-300 dark:focus-visible:ring-marin-blue-400 dark:focus-visible:ring-offset-stone-900"
-                  >
-                    {card.linkLabel} →
-                  </Link>
-                </CardContent>
+                {card.linkHref && (
+                  <CardContent className="mt-auto">
+                    <Link
+                      href={card.linkHref}
+                      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                      className="rounded font-product-body text-sm font-medium text-marin-blue-700 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-marin-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-marin-blue-300 dark:focus-visible:ring-marin-blue-400 dark:focus-visible:ring-offset-stone-900"
+                    >
+                      {card.linkLabel} →
+                    </Link>
+                  </CardContent>
+                )}
               </Card>
             );
           })}
@@ -137,8 +153,7 @@ export default function Home() {
           </h2>
           <div className="mt-8 grid gap-6 md:grid-cols-3">
             {voiceActions.map((action) => {
-              const href = action.url ?? "https://engage.marincounty.gov";
-              const external = href.startsWith("http");
+              const external = action.url?.startsWith("http");
 
               return (
                 <Card key={action.id}>
@@ -149,15 +164,17 @@ export default function Home() {
                     <CardTitle className="font-product-display text-lg">{action.label}</CardTitle>
                     <CardDescription>{action.description}</CardDescription>
                   </CardHeader>
-                  <CardContent>
-                    <Link
-                      href={href}
-                      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                      className="rounded font-product-body text-sm font-medium text-marin-blue-700 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-marin-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-marin-blue-300 dark:focus-visible:ring-marin-blue-400 dark:focus-visible:ring-offset-stone-900"
-                    >
-                      Get started →
-                    </Link>
-                  </CardContent>
+                  {action.url && (
+                    <CardContent>
+                      <Link
+                        href={action.url}
+                        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                        className="rounded font-product-body text-sm font-medium text-marin-blue-700 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-marin-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-marin-blue-300 dark:focus-visible:ring-marin-blue-400 dark:focus-visible:ring-offset-stone-900"
+                      >
+                        Get started →
+                      </Link>
+                    </CardContent>
+                  )}
                 </Card>
               );
             })}
@@ -166,7 +183,7 @@ export default function Home() {
           {channels.length > 0 && (
             <div className="mt-12">
               <h2 className="text-center font-product-display text-xl font-semibold text-stone-900 dark:text-stone-50">
-                Stay connected
+                Follow us
               </h2>
               <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
                 {channels.map((channel) => (
