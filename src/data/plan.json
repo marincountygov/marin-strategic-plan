@@ -8,7 +8,7 @@
       "@id": "https://marincountygov.github.io/marin-strategic-plan/plan/countywide-strategic-plan",
       "@type": "marin:StrategicPlan",
       "name": "Envision Marin",
-      "description": "Envision Marin is the County's Countywide Strategic Plan for housing, climate, and digital government — see what we're doing, share your ideas, and follow the impact of your input.",
+      "description": "Envision Marin is the County's first Countywide Strategic Plan in 25 years, and we want to hear from you! Learn about the process, share what matters most to you, and follow how community input helps shape the plan.",
       "text": "The Marin Countywide Strategic Plan aligns the Board of Supervisors, County departments, and community partners around a small set of measurable goals. Every goal on this site links down to the objectives, initiatives, and projects that implement it, and up to the performance measures that track it — the plan itself is the JSON graph, not a PDF.",
       "marin:status": "In Progress",
       "startDate": "2025-01-01",
@@ -29,45 +29,53 @@
           "description": "Work across County departments, cities, towns, and community organizations rather than in silos."
         }
       ],
-      "marin:about": {
-        "purpose": "Give the Board, County departments, and the public one shared, current view of the County's strategic priorities and progress against them.",
-        "whyItMatters": "Countywide priorities have historically lived in separate department plans, board reports, and PDFs that go stale quickly. This site keeps one structured source of truth that every report and dashboard draws from.",
-        "scope": "Covers Countywide priorities set by the Board of Supervisors. Department-level plans link into this plan's goals and KPIs rather than duplicating them.",
-        "planningApproach": "Built through community engagement, department consultation, and Board review, following the phases on the Timeline page.",
-        "expectedOutcomes": "Measurable progress on housing production, greenhouse gas reduction, and digital service delivery, reported quarterly against the KPIs on the Performance page."
-      },
-      "marin:faq": [
+      "marin:aboutSections": [
         {
-          "question": "How often is this site updated?",
-          "answer": "Goal and KPI progress is reviewed quarterly; milestone and update content is added as it happens."
+          "heading": "Planning for Marin's Future",
+          "paragraphs": [
+            "Marin County is developing its first comprehensive Countywide Strategic Plan in more than 25 years. Envision Marin is the process of looking ahead, listening to communities across the County, and creating a shared direction for our future.",
+            "The plan will help guide County priorities, services, investments and decisions while connecting the work already underway across County government. It will align Board priorities, departmental workplans, budgets, capital planning and performance measures, around a shared direction, helping the County stay focused on what matters most to the people of Marin."
+          ]
         },
         {
-          "question": "How is this different from a PDF strategic plan?",
-          "answer": "Every goal, objective, initiative, and KPI here is structured data with its own stable link, so it can be tracked, queried, and linked to directly instead of being buried in a document."
+          "heading": "The County Is Listening",
+          "paragraphs": [
+            "Community input is an important part of shaping the Countywide Strategic Plan.",
+            "This process is an opportunity to hear from people across Marin about their experiences, needs, priorities and hopes for the future. What we hear from the community will be considered alongside data, input from County staff, Board direction and perspectives from individuals, community organizations, businesses, cities and towns, and other partners.",
+            "You can participate now by sharing your ideas through <a href=\"https://engage.marincounty.gov\">Engage Marin</a>, the County's online engagement platform. Additional opportunities are coming this fall, including community workshops, small-group conversations and opportunities to connect with us at community events."
+          ]
         },
         {
-          "question": "How can I get involved?",
-          "answer": "See the Engagement page for upcoming workshops and meetings, and Who's Involved for how residents, departments, and partner agencies participate."
+          "heading": "From Listening to Action",
+          "paragraphs": [
+            "Envision Marin is more than developing a plan. It is about creating a shared direction that can help the County turn priorities into coordinated action.",
+            "As input is gathered, the County will look for common themes, that will help shape the plan and share updates on the process along the way. Once adopted, the plan will help guide County priorities and investments across three two-year budget cycles over six years."
+          ]
+        },
+        {
+          "heading": "A Process for Everyone",
+          "paragraphs": [
+            "Envision Marin is for everyone who lives, works, learns or does business in Marin County. We want to make it as easy as possible for people to participate, with focused outreach to communities that have historically been underrepresented and options for translation, interpretation, ADA accommodations and virtual participation whenever possible."
+          ]
         }
       ],
+      "marin:newsletter": {
+        "heading": "Stay Connected",
+        "body": "Sign up for the Envision Marin e-newsletter for periodic updates on the Countywide Strategic Plan, including upcoming opportunities to participate, important milestones, and project updates.",
+        "linkLabel": "Sign up today!",
+        "linkHref": "https://lp.constantcontactpages.com/sl/VC3fxKj/EnvisionMarin"
+      },
+      "marin:closingTagline": "Learn more. Make your voice heard. Help shape Marin's future.",
       "marin:homeCards": [
         {
           "heading": "Learn More",
-          "body": "PLACEHOLDER COPY — pending approved language from the comms provider (Linn). Envision Marin is the County's plan for a more affordable, resilient, and easy-to-work-with Marin. Explore the priorities, the process, and what's happening next.",
+          "body": "Learn about Envision Marin, why it matters, what's ahead and how you can participate to help shape Marin's future.",
           "linkLabel": "What is Envision Marin?",
           "linkHref": "/about"
         },
         {
           "heading": "Get Involved",
-          "body": "Share your ideas and priorities with the County — online through Engage Marin, or in person at an upcoming workshop or open house near you.",
-          "linkLabel": "See ways to participate",
-          "linkHref": "https://engage.marincounty.gov"
-        },
-        {
-          "heading": "Impact",
-          "body": "See how resident input is shaping the plan, drawn from Engage Marin activity and in-person events and roadshows.",
-          "linkLabel": "View engagement activity",
-          "linkHref": "https://engage.marincounty.gov"
+          "body": "Share your ideas now on Engage Marin, our online engagement platform. Additional opportunities to participate, including community workshops and conversations, are coming this fall."
         }
       ],
       "marin:voiceActions": [
@@ -89,8 +97,7 @@
           "id": "attend-event",
           "timeCommitment": "Have an hour?",
           "label": "Attend an event in your community",
-          "description": "Join an upcoming workshop or open house near you.",
-          "url": "https://engage.marincounty.gov"
+          "description": "Community workshops and other opportunities to participate are coming this fall."
         }
       ]
     }

@@ -38,28 +38,46 @@ export const StrategicPlanSchema = BaseEntitySchema.extend({
   "marin:vision": z.string(),
   "marin:mission": z.string(),
   "marin:values": z.array(z.object({ name: z.string(), description: z.string() })),
-  "marin:about": z.object({
-    purpose: z.string(),
-    whyItMatters: z.string(),
-    scope: z.string(),
-    planningApproach: z.string(),
-    expectedOutcomes: z.string(),
-  }),
-  "marin:faq": z.array(z.object({ question: z.string(), answer: z.string() })),
-  // The three homepage cards (Learn More / Get Involved / Impact) — content
-  // for the simplified short-term homepage, kept as data rather than
-  // hardcoded JSX so the copy can be swapped (e.g. for approved comms
-  // language) without touching page code.
+  // The About page's body copy — an ordered list of named sections, each a
+  // heading plus one or more paragraphs, so approved comms language can be
+  // swapped in (or a section added/reordered) without touching page code.
+  "marin:aboutSections": z
+    .array(
+      z.object({
+        heading: z.string(),
+        paragraphs: z.array(z.string()).min(1),
+      }),
+    )
+    .optional(),
+  // The "Sign up for the e-newsletter" CTA — shared by the homepage's third
+  // card and the About page's closing section, so it's defined once here
+  // rather than duplicated in two places.
+  "marin:newsletter": z
+    .object({
+      heading: z.string(),
+      body: z.string(),
+      linkLabel: z.string(),
+      linkHref: z.string().url(),
+    })
+    .optional(),
+  // The About page's closing line.
+  "marin:closingTagline": z.string().optional(),
+  // The homepage's two authored cards (Learn More / Get Involved) — the
+  // third card is always the marin:newsletter CTA above, not authored here.
+  // Content for the simplified short-term homepage, kept as data rather
+  // than hardcoded JSX so approved comms language can be swapped in without
+  // touching page code. A card's link is optional — "Get Involved" has none
+  // until this fall's in-person opportunities are confirmed.
   "marin:homeCards": z
     .array(
       z.object({
         heading: z.string(),
         body: z.string(),
-        linkLabel: z.string(),
-        linkHref: z.string(),
+        linkLabel: z.string().optional(),
+        linkHref: z.string().optional(),
       }),
     )
-    .length(3)
+    .length(2)
     .optional(),
   // The "Envision Marin so far" stats band — currently commented out on the
   // homepage (no engagement data source wired up yet); kept as an optional
@@ -67,7 +85,9 @@ export const StrategicPlanSchema = BaseEntitySchema.extend({
   "marin:impactStats": z
     .array(z.object({ label: z.string(), value: z.string() }))
     .optional(),
-  // The "Make your voice heard" time-tiered calls to action.
+  // The "Make your voice heard" time-tiered calls to action. A url is
+  // optional — "Attend an event" has none until this fall's community
+  // workshops are scheduled.
   "marin:voiceActions": z
     .array(
       z.object({
